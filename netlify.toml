@@ -1,0 +1,9 @@
+[build]
+  command = "yarn build"
+  publish = ".next"
+
+[build.environment]
+  NODE_ENV = "development"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
