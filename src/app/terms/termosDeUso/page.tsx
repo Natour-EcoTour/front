@@ -17,7 +17,7 @@ export default function TermosDeUso() {
 
                     <div className="bg-white rounded-lg shadow-lg p-8 space-y-8">
 
-                        <text className="text-black">Conteúdo dos Termos de Uso</text>
+                        <h1 className="text-black">Conteúdo dos Termos de Uso</h1>
 
                         <div className="border-t pt-8 mt-8">
                             <div className="flex flex-col sm:flex-row justify-between items-center">

@@ -3,7 +3,6 @@
 import Header from '@/components/Header/Header';
 import { ImagesLandingPage } from '@/components/ImagesLandingPage/ImagesLandingPage';
 import Image from 'next/image';
-
 export default function Home() {
   return (
     <>

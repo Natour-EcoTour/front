@@ -38,7 +38,8 @@ const Header = () => {
                 border-[0.0625rem] border-green-700 rounded-[0.3125rem] 
                 flex items-center justify-between 
                 p-[0.5625rem_1.3125rem]`
-                }>
+                }
+                onClick={() => window.location.href = '/master/login'}>
                 <span className="text-green-700 text-[1.125rem]">Login</span>
             </button>
         </div>
