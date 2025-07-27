@@ -58,7 +58,7 @@ export function ImagesLandingPage() {
                 <div className="embla__container flex">
                     <div className="embla__slide flex-none w-full min-w-0 h-96 relative">
                         <Image
-                            src="/me.gif"
+                            src="/nature_trail.jpg"
                             alt="Nature Slide"
                             fill
                             className="object-cover"
@@ -76,7 +76,7 @@ export function ImagesLandingPage() {
                     </div>
                     <div className="embla__slide flex-none w-full min-w-0 h-96 relative">
                         <Image
-                            src="/me.gif"
+                            src="/nature_trail.jpg"
                             alt="Adventure Slide 3"
                             fill
                             className="object-cover"
