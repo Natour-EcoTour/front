@@ -22,7 +22,7 @@ export default function Home() {
 
         <section className="relative overflow-hidden" id='carousel'>
           <div
-            className="absolute inset-0 bg-[url('/nature_trail.jpg')] bg-cover bg-center blur-xs z-0"
+            className="absolute inset-0 bg-[url('/blured_nature_trail.png')] bg-cover bg-center z-0"
             aria-hidden="true"
           />
 
@@ -31,7 +31,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className='py-16 px-8 bg-gradient-to-b from-gray-50 to-white' id='about'>
+        <section className='py-16 px-8 bg-gradient-to-b from-amber-100 to-white' id='about'>
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
               Sobre nós
@@ -90,7 +90,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className='bg-green-200 mx-auto px-4 py-10' id='contact'>
+        <section className='bg-gradient-to-t from-green-200 to-white mx-auto px-4 py-10' id='contact'>
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
               Fale conosco
@@ -100,11 +100,11 @@ export default function Home() {
               Estamos aqui para ajudar! Se você tiver alguma dúvida, sugestão ou feedback, entre em contato conosco.
             </p>
 
-            <a href="mailto:natourproject@gmail.com" className="text-blue-600 hover:underline">
+            <a href="mailto:natourproject@gmail.com" className="text-blue-600 hover:underline font-bold">
               natourproject@gmail.com
             </a>
 
-            <a href="tel:+551111111111" className="block mt-2 text-blue-600 hover:underline">
+            <a href="tel:+551111111111" className="block mt-2 text-blue-600 hover:underline font-bold">
               (11) 11111-1111
             </a>
           </div>
