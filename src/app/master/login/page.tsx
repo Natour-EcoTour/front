@@ -28,7 +28,7 @@ export default function MasterLogin() {
         try {
             // simulate API call
             await new Promise((r) => setTimeout(r, 2000));
-            router.push('/');
+            router.push('/master/masterInicio');
         } catch {
             setLoginError('Erro ao fazer login. Tente novamente.');
         }
