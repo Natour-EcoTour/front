@@ -24,15 +24,52 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link
-                                href="/about"
+                                href="/master/masterUsersPage"
                                 className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
                             >
                                 Usuários
                             </Link>
                         </li>
+
                         <li>
                             <Link
-                                href="/contact"
+                                href="/master/"
+                                className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
+                            >
+                                Pontos
+                            </Link>
+                        </li>
+                        
+                        <li>
+                            <Link
+                                href="/master/"
+                                className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
+                            >
+                                Avaliações
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link
+                                href="/master/"
+                                className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
+                            >
+                                Termos e Política
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link
+                                href="/master/"
+                                className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
+                            >
+                                Configurações
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link
+                                href="/"
                                 className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
                             >
                                 Sair
