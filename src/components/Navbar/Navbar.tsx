@@ -33,7 +33,7 @@ const Navbar = () => {
 
                         <li>
                             <Link
-                                href="/master/"
+                                href="/master/masterPointsPage"
                                 className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
                             >
                                 Pontos
@@ -42,7 +42,7 @@ const Navbar = () => {
                         
                         <li>
                             <Link
-                                href="/master/"
+                                href="/master/masterReviewsPage"
                                 className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
                             >
                                 Avaliações
@@ -51,7 +51,7 @@ const Navbar = () => {
 
                         <li>
                             <Link
-                                href="/master/"
+                                href="/master/masterTermsPage"
                                 className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
                             >
                                 Termos e Política
@@ -60,7 +60,7 @@ const Navbar = () => {
 
                         <li>
                             <Link
-                                href="/master/"
+                                href="/master/masterConfigsPage"
                                 className="block py-3 px-4 font-bold text-gray-700 hover:bg-gray-100 hover:text-green-800 rounded-lg transition-colors duration-200"
                             >
                                 Configurações

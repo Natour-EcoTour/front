@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { mockUsers } from '@/mock/usersMocked';
+import MasterPageTitle from '@/components/MasterPageTitle/MasterPageTitle'
 import { Trash, Pencil, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 
 export default function MasterUsersPage() {
@@ -25,19 +26,22 @@ export default function MasterUsersPage() {
 
   return (
     <div className="p-6">
-      <div className="overflow-x-auto bg-white rounded-lg shadow">
+
+      <MasterPageTitle text="Usuários" />
+
+      <div className="overflow-x-auto bg-white rounded-lg shadow border-2 border-gray-200">
         <table className="min-w-full table-auto">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Nome</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">E-mail</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Qnt. pontos</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Ações</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Detalhes</th>
+              <th className="px-6 py-3 text-left text-gray-500">Nome</th>
+              <th className="px-6 py-3 text-left text-gray-500">E-mail</th>
+              <th className="px-6 py-3 text-left text-gray-500">Qnt. pontos</th>
+              <th className="px-6 py-3 text-left text-gray-500">Status</th>
+              <th className="px-6 py-3 text-left text-gray-500">Ações</th>
+              <th className="px-6 py-3 text-left text-gray-500">Detalhes</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-gray-400">
             {currentUsers.map(user => (
               <tr key={user.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.name}</td>

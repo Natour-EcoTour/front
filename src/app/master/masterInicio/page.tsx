@@ -12,25 +12,25 @@ export default function MasterUsersPage() {
                 <HomeButton
                     name="Pontos"
                     description="Administre os pontos dos usuários do sistema"
-                    href="/master/masterUsersPage"
+                    href="/master/masterPointsPage"
                 />
 
                 <HomeButton
                     name="Avaliações"
                     description="Avalições dos pontos"
-                    href="/master/masterUsersPage"
+                    href="/master/masterReviewsPage"
                 />
 
                 <HomeButton
                     name="Termos e Política"
                     description="Pagina de administração de termos e política"
-                    href="/master/masterUsersPage"
+                    href="/master/masterTermsPage"
                 />
 
                 <HomeButton
                     name="Configurações"
                     description="Configurações da conta"
-                    href="/master/masterUsersPage"
+                    href="/master/masterConfigsPage"
                 />
 
                 <HomeButton
