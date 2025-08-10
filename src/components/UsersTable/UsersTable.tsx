@@ -42,7 +42,7 @@ export function UsersTable({ users, onEdit, onDelete, onView }: UsersTableProps)
               <td className="px-6 py-4 text-sm font-medium text-gray-900">{user.name}</td>
               <td className="px-6 py-4 text-sm text-gray-500">{user.email}</td>
               <td className="px-6 py-4 text-sm text-gray-500">{user.points}</td>
-              <td className="px-6 py-4"><Switch /></td>
+              <td className="px-6 py-4"><Switch entity='user'/></td>
               <td className="px-6 py-4 text-sm">
                 <div className="flex space-x-2">
                   <button onClick={()=>onEdit(user.id)}>

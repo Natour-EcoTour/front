@@ -45,7 +45,7 @@ const Modal = ({ open, onClose, onConfirm, children, title, message, type }: Mod
             <div className="absolute inset-0 bg-black/50" onClick={onClose} aria-hidden="true" />
             <div className="relative z-10 w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
                 <button
-                    className="absolute right-3 top-3 rounded-md px-2 py-1 text-gray-600 hover:bg-gray-100"
+                    className="absolute right-3 top-3 rounded-md px-2 py-1 text-gray-600 hover:bg-gray-100 cursor-pointer"
                     onClick={onClose}
                     aria-label="Close modal"
                 >

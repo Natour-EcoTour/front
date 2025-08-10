@@ -32,7 +32,9 @@ export default function MasterUsersPage() {
 
       <MasterPageTitle text="Usuários" />
 
-      <SearchInput />
+      <SearchInput
+        placeholder="Digite o nome do usuário..."
+      />
 
       <UsersTable
         users={currentUsers}

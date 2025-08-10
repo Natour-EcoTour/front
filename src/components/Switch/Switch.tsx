@@ -2,7 +2,11 @@
 import { useState } from 'react';
 import Modal from '@/components/Modal/Modal';
 
-export default function MySwitch() {
+interface SwitchProps {
+  entity: 'user' | 'point';
+}
+
+export default function Switch({ entity }: SwitchProps) {
   const [isOn, setIsOn] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -18,6 +22,23 @@ export default function MySwitch() {
     setIsOn(false);
     setShowModal(false);
   };
+
+  type ModalCopy = { title: string; message: string; type: 'info' | 'warning' | 'error' };
+
+  const modalCopy: Record<SwitchProps['entity'], ModalCopy> = {
+    user: {
+      title: 'Desativar usuário',
+      message: 'Você tem certeza que deseja desativar este usuário?',
+      type: 'warning',
+    },
+    point: {
+      title: 'Desativar ponto',
+      message: 'Você tem certeza que deseja desativar este ponto?',
+      type: 'warning',
+    },
+  };
+
+  const { title, message, type } = modalCopy[entity];
 
   return (
     <>
@@ -47,10 +68,10 @@ export default function MySwitch() {
       <Modal
         open={showModal}
         onClose={() => setShowModal(false)}
-        onConfirm={() => confirmDeactivate()}
-        title="Desativar usuário"
-        message="Você tem certeza que deseja desativar este usuário?"
-        type="warning"
+        onConfirm={confirmDeactivate}
+        title={title}
+        message={message}
+        type={type}
       />
 
     </>
