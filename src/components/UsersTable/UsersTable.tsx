@@ -45,9 +45,9 @@ export function UsersTable({ users, onEdit, onDelete, onView }: UsersTableProps)
               <td className="px-6 py-4"><Switch entity='user'/></td>
               <td className="px-6 py-4 text-sm">
                 <div className="flex space-x-2">
-                  <button onClick={()=>onEdit(user.id)}>
+                  {/* <button onClick={()=>onEdit(user.id)}>
                     <Pencil size={16} className="text-blue-600 hover:text-blue-900 cursor-pointer" />
-                  </button>
+                  </button> */}
                   <button onClick={()=>handleDeleteClick(user.id)}>
                     <Trash size={16} className="text-red-600 hover:text-red-900 cursor-pointer" />
                   </button>

@@ -3,7 +3,7 @@
 import { usePagination } from '@/app/hooks/usePagination';
 import MasterPageTitle from '@/components/MasterPageTitle/MasterPageTitle'
 import { Pagination } from '@/components/Pagination/Pagination';
-import { PointsTable } from '@/components/PointsTabel/PointsTabel';
+import { PointsTable } from '@/components/PointsTable/PointsTable';
 import SearchInput from '@/components/SearchInput/SearchInput'
 import { mockPoints } from '@/mock/usersMocked';
 
