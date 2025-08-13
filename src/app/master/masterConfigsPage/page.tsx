@@ -2,6 +2,12 @@
 import MasterPageTitle from '@/components/MasterPageTitle/MasterPageTitle'
 import ResetPasswordModal from '@/components/ResetPasswordModal/ResetPasswordModal'
 import { useState } from 'react';
+
+interface UpdatePasswordFormData {
+    currentPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+}
 export default function MasterConfigsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
@@ -32,7 +38,11 @@ export default function MasterConfigsPage() {
                 <ResetPasswordModal
                     open={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
-                    onConfirm={() => {
+                    onConfirm={(data: UpdatePasswordFormData) => {
+                        // Handle the form data here
+                        console.log('Password update data:', data);
+                        // You can make an API call here to update the password
+                        // Example: await updatePassword(data);
                         setIsModalOpen(false);
                     }}
                 />

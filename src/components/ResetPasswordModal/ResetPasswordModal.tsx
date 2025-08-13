@@ -2,20 +2,52 @@
 import { X, Lock } from "lucide-react";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import PasswordInput from "@/components/PasswordInput/PasswordInput";
+import { UpdatePasswordSchema } from "@/validations/UpdatePasswordSchema";
 
 interface ModalProps {
     open: boolean;
     onClose: () => void;
-    onConfirm?: () => void;
+    onConfirm?: (data: UpdatePasswordFormData) => void;
     children?: React.ReactNode;
 }
 
+interface UpdatePasswordFormData {
+    currentPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+}
+
 const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isValid },
+        reset
+    } = useForm<UpdatePasswordFormData>({
+        resolver: yupResolver(UpdatePasswordSchema),
+        mode: "onChange"
+    });
+
     useEffect(() => {
         const onEsc = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
         if (open) document.addEventListener('keydown', onEsc);
         return () => document.removeEventListener('keydown', onEsc);
     }, [open, onClose]);
+
+    useEffect(() => {
+        if (!open) {
+            reset();
+        }
+    }, [open, reset]);
+
+    const onSubmit = (data: UpdatePasswordFormData) => {
+        if (onConfirm) {
+            onConfirm(data);
+        }
+    };
 
     if (!open) return null;
 
@@ -39,29 +71,59 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
 
                 <h2 className="mb-2 text-lg font-bold text-black">Redefinir Senha</h2>
 
-                <div className="grid gap-4">
-                    <label className="text-black">Senha atual</label>
+                <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
+                    <div>
+                        <label className="text-black">Senha atual</label>
+                        <PasswordInput
+                            {...register("currentPassword")}
+                            placeholder="Digite a sua senha atual"
+                            id="current-password"
+                            error={errors.currentPassword?.message}
+                        />
+                    </div>
 
-                    <label className="text-black">Nova senha</label>
+                    <div>
+                        <label className="text-black">Nova senha</label>
+                        <PasswordInput
+                            {...register("newPassword")}
+                            placeholder="Digite a sua nova senha"
+                            id="new-password"
+                            error={errors.newPassword?.message}
+                        />
+                    </div>
 
-                    <label className="text-black">Confirmação de senha</label>
-                </div>
+                    <div>
+                        <label className="text-black">Confirmação de senha</label>
+                        <PasswordInput
+                            {...register("confirmPassword")}
+                            placeholder="Confirme a sua nova senha"
+                            id="confirm-password"
+                            error={errors.confirmPassword?.message}
+                        />
+                    </div>
 
-                <div className="mt-4 flex justify-end gap-2">
-                    <button
-                        className="rounded-md border border-black px-3 py-1 text-sm text-black hover:bg-gray-200 cursor-pointer"
-                        onClick={onClose}
-                    >
-                        Cancelar
-                    </button>
+                    <div className="mt-4 flex justify-end gap-2">
+                        <button
+                            type="button"
+                            className="rounded-md border border-black px-3 py-1 text-sm text-black hover:bg-gray-200 cursor-pointer"
+                            onClick={onClose}
+                        >
+                            Cancelar
+                        </button>
 
-                    <button
-                        className={`rounded-md px-3 py-1 text-sm text-white cursor-pointer bg-green-500 hover:bg-green-600`}
-                        onClick={onConfirm}
-                    >
-                        Confirmar
-                    </button>
-                </div>
+                        <button
+                            type="submit"
+                            disabled={!isValid}
+                            className={`rounded-md px-3 py-1 text-sm text-white cursor-pointer ${
+                                isValid 
+                                    ? 'bg-green-500 hover:bg-green-600' 
+                                    : 'bg-gray-400 cursor-not-allowed'
+                            }`}
+                        >
+                            Confirmar
+                        </button>
+                    </div>
+                </form>
                 {children}
             </div>
         </div>,
