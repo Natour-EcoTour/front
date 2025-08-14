@@ -13,6 +13,7 @@ export const mockUsers = {
         {
             id: "1",
             role: "1",
+            avatar: "https://cdn.discordapp.com/emojis/1371449388748243025.webp?size=128",
             name: "Jane Doe",
             points: 5,
             status: "Ativo",
@@ -24,17 +25,19 @@ export const mockUsers = {
         {
             id: "2",
             role: "2",
+            avatar: "https://cdn.discordapp.com/emojis/1395050274397356064.webp?size=128",
             name: "John Smith",
             points: 10,
             status: "Inativo",
             email: "john.smith@example.com",
-            deactivation_reason: "",
+            deactivation_reason: "Ele não cadastrou os pontos conforme as normas.",
             created_at: "2025-07-15T14:20:00Z",
             updated_at: "2025-07-20T09:10:00Z",
         },
         {
             id: "3",
             role: "3",
+            avat: "https://cdn.discordapp.com/emojis/1318295145002696814.webp?size=128",
             name: "Alice Wu",
             points: 8,
             status: "Ativo",
@@ -57,6 +60,7 @@ export const mockUsers = {
         {
             id: "5",
             role: "2",
+            avatar: "https://cdn.discordapp.com/emojis/1344777708252565604.webp?size=128",
             name: "Charlie Brown",
             points: 12,
             status: "Inativo",

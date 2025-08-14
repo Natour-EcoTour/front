@@ -8,11 +8,12 @@ interface SwitchProps {
 
 export default function Switch({ entity }: SwitchProps) {
   const [isOn, setIsOn] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showWarningModal, setShowWarningModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleToggle = () => {
     if (isOn) {
-      setShowModal(true);
+      setShowWarningModal(true);
     } else {
       setIsOn(true);
     }
@@ -20,7 +21,8 @@ export default function Switch({ entity }: SwitchProps) {
 
   const confirmDeactivate = () => {
     setIsOn(false);
-    setShowModal(false);
+    setShowWarningModal(false);
+    setShowSuccessModal(true);
   };
 
   type ModalCopy = { title: string; message: string; type: 'info' | 'warning' | 'error' };
@@ -66,12 +68,20 @@ export default function Switch({ entity }: SwitchProps) {
       </label>
 
       <Modal
-        open={showModal}
-        onClose={() => setShowModal(false)}
+        open={showWarningModal}
+        onClose={() => setShowWarningModal(false)}
         onConfirm={confirmDeactivate}
         title={title}
         message={message}
         type={type}
+      />
+
+      <Modal
+        open={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        title="Usuário desativado"
+        message={`O usuário foi desativado com sucesso.`}
+        type="success"
       />
 
     </>

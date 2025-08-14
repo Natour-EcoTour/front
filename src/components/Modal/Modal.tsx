@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { X, Info, TriangleAlert, Ban } from 'lucide-react';
+import { X, Info, TriangleAlert, Ban, Check } from 'lucide-react';
 
 interface ModalProps {
     open: boolean;
@@ -10,7 +10,7 @@ interface ModalProps {
     children?: React.ReactNode;
     title: string;
     message?: string;
-    type: 'info' | 'warning' | 'error';
+    type: 'info' | 'warning' | 'error' | 'success';
 }
 
 const Modal = ({ open, onClose, onConfirm, children, title, message, type }: ModalProps) => {
@@ -26,18 +26,21 @@ const Modal = ({ open, onClose, onConfirm, children, title, message, type }: Mod
         info: 'bg-blue-600 hover:bg-blue-700',
         warning: 'bg-yellow-500 hover:bg-yellow-600',
         error: 'bg-red-600 hover:bg-red-700',
+        success: 'bg-green-600 hover:bg-green-700',
     };
 
     const typeIcons = {
         info: <Info className="w-12 h-12 text-white" />,
         warning: <TriangleAlert className="w-12 h-12 text-white" />,
         error: <Ban className="w-12 h-12 text-white" />,
+        success: <Check className="w-12 h-12 text-white" />,
     }
 
     const bgByType = {
         info: 'bg-blue-600',
         warning: 'bg-yellow-500',
         error: 'bg-red-600',
+        success: 'bg-green-600',
     };
 
     return createPortal(
@@ -57,18 +60,29 @@ const Modal = ({ open, onClose, onConfirm, children, title, message, type }: Mod
                 <h2 className="mb-2 text-lg font-bold text-black">{title}</h2>
                 {message && <p className="text-sm text-black">{message}</p>}
                 <div className="mt-4 flex justify-end gap-2">
-                    <button
-                        className="rounded-md border border-black px-3 py-1 text-sm text-black hover:bg-gray-200 cursor-pointer"
-                        onClick={onClose}
-                    >
-                        Cancelar
-                    </button>
-                    <button
-                        className={`rounded-md px-3 py-1 text-sm text-white cursor-pointer ${typeColors[type]}`}
-                        onClick={onConfirm}
-                    >
-                        Confirmar
-                    </button>
+                    {type === 'success' ? (
+                        <button
+                            className={`rounded-md px-3 py-1 text-sm text-white cursor-pointer ${typeColors[type]}`}
+                            onClick={onClose}
+                        >
+                            Voltar
+                        </button>
+                    ) : (
+                        <>
+                            <button
+                                className="rounded-md border border-black px-3 py-1 text-sm text-black hover:bg-gray-200 cursor-pointer"
+                                onClick={onClose}
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                className={`rounded-md px-3 py-1 text-sm text-white cursor-pointer ${typeColors[type]}`}
+                                onClick={onConfirm}
+                            >
+                                Confirmar
+                            </button>
+                        </>
+                    )}
                 </div>
                 {children}
             </div>
