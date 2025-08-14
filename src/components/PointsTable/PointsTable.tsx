@@ -2,6 +2,7 @@ import { Map, Trash, Eye } from 'lucide-react';
 import Switch from "@/components/Switch/Switch";
 import Modal from '@/components/Modal/Modal';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface Points {
     id: string;
@@ -29,6 +30,8 @@ export function PointsTable({ points, onDelete, onView }: PointsTableProps) {
     const [showWarningModal, setShowWarningModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [selectedId, setSelectedId] = useState<string | null>(null);
+
+    const router = useRouter();
 
     const handleDeleteClick = (id: string) => {
         setSelectedId(id);
@@ -102,7 +105,7 @@ export function PointsTable({ points, onDelete, onView }: PointsTableProps) {
 
                                 <td className="px-6 py-4 text-sm">
                                     <div className="flex items-center justify-center">
-                                        <button onClick={() => onView(point.id)}>
+                                        <button onClick={() => router.push(`/master/masterPointsPage/${point.id}`)}>
                                             <Eye size={20} className="text-green-600 hover:text-green-900 cursor-pointer" />
                                         </button>
                                     </div>

@@ -29,15 +29,18 @@ export default function MasterPointsPage() {
         <>
             <div className="p-6 bg-gray-50 min-h-screen">
                 <MasterPageTitle text="Pontos" />
+
                 <SearchInput
                     placeholder='Digite o nome do ponto...'
                 />
+
                 <PointsTable
                     points={currentPoints}
                     onEdit={handleEdit}
                     onDelete={handleDelete}
                     onView={handleView}
                 />
+
                 <Pagination
                     page='pontos'
                     currentPage={currentPage}
