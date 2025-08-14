@@ -70,10 +70,10 @@ const ReasonModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
 
                 <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
                     <div>
-                        <input
-                            type="text"
+                        <textarea
+                            // type="text"
                             placeholder="Digite o motivo"
-                            className={`text-black border rounded-md p-2 w-full ${errors.reason ? 'border-red-500' : 'border-gray-300'
+                            className={`text-black border rounded-md p-2 w-full h-60 ${errors.reason ? 'border-red-500' : 'border-gray-300'
                                 }`}
                             {...register("reason")}
                         />
