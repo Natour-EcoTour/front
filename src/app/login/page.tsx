@@ -26,7 +26,6 @@ export default function MasterLogin() {
     const onSubmit: SubmitHandler<LoginProps> = async (data) => {
         setLoginError(null);
         try {
-            // simulate API call
             await new Promise((r) => setTimeout(r, 2000));
             router.push('/master/masterInicio');
         } catch {
@@ -47,9 +46,8 @@ export default function MasterLogin() {
                                     type="email"
                                     id="email"
                                     {...register('email')}
-                                    className={`mt-1 block w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${
-                                        errors.email ? 'border-red-500' : 'border-gray-300'
-                                    }`}
+                                    className={`mt-1 block w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${errors.email ? 'border-red-500' : 'border-gray-300'
+                                        }`}
                                     placeholder="Digite seu e-mail"
                                 />
                                 {errors.email && <p className="mt-2 text-sm text-red-500">{errors.email.message}</p>}
@@ -60,9 +58,8 @@ export default function MasterLogin() {
                                     type="password"
                                     id="password"
                                     {...register('password')}
-                                    className={`mt-1 block w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${
-                                        errors.password ? 'border-red-500' : 'border-gray-300'
-                                    }`}
+                                    className={`mt-1 block w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${errors.password ? 'border-red-500' : 'border-gray-300'
+                                        }`}
                                     placeholder="Digite sua senha"
                                 />
                                 {errors.password && <p className="mt-2 text-sm text-red-500">{errors.password.message}</p>}
@@ -78,16 +75,16 @@ export default function MasterLogin() {
                                 className="flex w-full items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition duration-200"
                             >
                                 {isSubmitting ? (
-                                <Image
-                                    src="/loading.svg"
-                                    alt="Carregando"
-                                    width={20}
-                                    height={20}
-                                    unoptimized
-                                    className="animate-spin"
-                                />
+                                    <Image
+                                        src="/loading.svg"
+                                        alt="Carregando"
+                                        width={20}
+                                        height={20}
+                                        unoptimized
+                                        className="animate-spin"
+                                    />
                                 ) : (
-                                'Entrar'
+                                    'Entrar'
                                 )}
                             </button>
                         </form>

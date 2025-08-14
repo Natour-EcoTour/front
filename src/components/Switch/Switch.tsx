@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
 import Modal from '@/components/Modal/Modal';
+import ReasonModal from '@/components/ReasonModal/ReasonModal';
+import { set } from 'react-hook-form';
 
 interface SwitchProps {
   entity: 'user' | 'point';
@@ -10,6 +12,7 @@ export default function Switch({ entity }: SwitchProps) {
   const [isOn, setIsOn] = useState(false);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showReasonModal, setShowReasonModal] = useState(false);
 
   const handleToggle = () => {
     if (isOn) {
@@ -20,12 +23,23 @@ export default function Switch({ entity }: SwitchProps) {
   };
 
   const confirmDeactivate = () => {
-    setIsOn(false);
     setShowWarningModal(false);
+    if (entity === 'user') {
+      setShowReasonModal(true);
+    } else {
+      setIsOn(false);
+      setShowSuccessModal(true);
+    }
+  };
+
+  const handleReasonSubmit = () => {
+    setIsOn(false);
+    setShowReasonModal(false);
     setShowSuccessModal(true);
   };
 
   type ModalCopy = { title: string; message: string; type: 'info' | 'warning' | 'error' };
+  type SuccessModalCopy = { title: string; message: string };
 
   const modalCopy: Record<SwitchProps['entity'], ModalCopy> = {
     user: {
@@ -40,7 +54,19 @@ export default function Switch({ entity }: SwitchProps) {
     },
   };
 
+  const successModalCopy: Record<SwitchProps['entity'], SuccessModalCopy> = {
+    user: {
+      title: 'Usuário desativado',
+      message: 'O usuário foi desativado com sucesso.',
+    },
+    point: {
+      title: 'Ponto desativado',
+      message: 'O ponto foi desativado com sucesso.',
+    },
+  };
+
   const { title, message, type } = modalCopy[entity];
+  const successModal = successModalCopy[entity];
 
   return (
     <>
@@ -76,11 +102,17 @@ export default function Switch({ entity }: SwitchProps) {
         type={type}
       />
 
+      <ReasonModal
+        open={showReasonModal && entity === 'user'}
+        onClose={() => setShowReasonModal(false)}
+        onConfirm={handleReasonSubmit}
+      />
+
       <Modal
         open={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
-        title="Usuário desativado"
-        message={`O usuário foi desativado com sucesso.`}
+        title={successModal.title}
+        message={successModal.message}
         type="success"
       />
 

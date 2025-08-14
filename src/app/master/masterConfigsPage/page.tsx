@@ -39,10 +39,7 @@ export default function MasterConfigsPage() {
                     open={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
                     onConfirm={(data: UpdatePasswordFormData) => {
-                        // Handle the form data here
                         console.log('Password update data:', data);
-                        // You can make an API call here to update the password
-                        // Example: await updatePassword(data);
                         setIsModalOpen(false);
                     }}
                 />

@@ -39,6 +39,7 @@ export default function MasterPointsPage() {
                     onView={handleView}
                 />
                 <Pagination
+                    page='pontos'
                     currentPage={currentPage}
                     totalPages={totalPages}
                     itemsPerPage={itemsPerPage}

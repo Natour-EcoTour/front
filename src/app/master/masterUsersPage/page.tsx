@@ -44,6 +44,7 @@ export default function MasterUsersPage() {
       />
 
       <Pagination
+        page='usuários'
         currentPage={currentPage}
         totalPages={totalPages}
         itemsPerPage={itemsPerPage}

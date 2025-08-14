@@ -22,6 +22,7 @@ export default function MasterReviewsPage() {
                     reviews={mockPointReviews.reviews}
                 />
                 <Pagination
+                    page='avaliações'
                     currentPage={currentPage}
                     totalPages={totalPages}
                     itemsPerPage={itemsPerPage}

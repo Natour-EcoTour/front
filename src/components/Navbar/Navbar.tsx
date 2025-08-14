@@ -39,7 +39,7 @@ const Navbar = () => {
                                 Pontos
                             </Link>
                         </li>
-                        
+
                         <li>
                             <Link
                                 href="/master/masterReviewsPage"

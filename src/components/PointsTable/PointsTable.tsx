@@ -10,7 +10,6 @@ interface Points {
     state: string;
     views: number;
     status: boolean;
-    // needed for Maps link fallback
     latitude?: number | null;
     longitude?: number | null;
     street?: string;
@@ -27,18 +26,20 @@ interface PointsTableProps {
 }
 
 export function PointsTable({ points, onDelete, onView }: PointsTableProps) {
-    const [showModal, setShowModal] = useState(false);
+    const [showWarningModal, setShowWarningModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [selectedId, setSelectedId] = useState<string | null>(null);
 
     const handleDeleteClick = (id: string) => {
         setSelectedId(id);
-        setShowModal(true);
+        setShowWarningModal(true);
     };
 
     const confirmDelete = () => {
         if (selectedId) onDelete(selectedId);
-        setShowModal(false);
+        setShowWarningModal(false);
         setSelectedId(null);
+        setShowSuccessModal(true);
     };
 
     return (
@@ -113,12 +114,20 @@ export function PointsTable({ points, onDelete, onView }: PointsTableProps) {
             </table>
 
             <Modal
-                open={showModal}
-                onClose={() => setShowModal(false)}
+                open={showWarningModal}
+                onClose={() => setShowWarningModal(false)}
                 onConfirm={confirmDelete}
                 title="Deletar ponto"
                 message="Esta ação não pode ser desfeita."
                 type="error"
+            />
+
+            <Modal
+                open={showSuccessModal}
+                onClose={() => setShowSuccessModal(false)}
+                title="Ponto deletado"
+                message={`O ponto foi deletado com sucesso.`}
+                type="success"
             />
         </div>
     );

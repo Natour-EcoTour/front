@@ -1,33 +1,30 @@
 'use client'
-import { X, Lock } from "lucide-react";
+import { X, Text } from "lucide-react";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import PasswordInput from "@/components/PasswordInput/PasswordInput";
-import { UpdatePasswordSchema } from "@/validations/UpdatePasswordSchema";
+import { RefusalSchema } from "@/validations/RefusalSchema";
 
 interface ModalProps {
     open: boolean;
     onClose: () => void;
-    onConfirm?: (data: UpdatePasswordFormData) => void;
+    onConfirm?: (data: RefusalReasonProps) => void;
     children?: React.ReactNode;
 }
 
-interface UpdatePasswordFormData {
-    currentPassword: string;
-    newPassword: string;
-    confirmPassword: string;
+interface RefusalReasonProps {
+    reason: string;
 }
 
-const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
+const ReasonModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
     const {
         register,
         handleSubmit,
         formState: { errors, isValid },
         reset
-    } = useForm<UpdatePasswordFormData>({
-        resolver: yupResolver(UpdatePasswordSchema),
+    } = useForm<RefusalReasonProps>({
+        resolver: yupResolver(RefusalSchema),
         mode: "onChange"
     });
 
@@ -43,7 +40,7 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
         }
     }, [open, reset]);
 
-    const onSubmit = (data: UpdatePasswordFormData) => {
+    const onSubmit = (data: RefusalReasonProps) => {
         if (onConfirm) {
             onConfirm(data);
         }
@@ -66,40 +63,23 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
                 </button>
 
                 <div className={`mx-auto grid place-items-center w-16 h-16 bg-green-500 rounded-full`}>
-                    <Lock size={35} className="text-white" />
+                    <Text size={35} className="text-white" />
                 </div>
 
-                <h2 className="mb-2 text-lg font-bold text-black">Redefinir Senha</h2>
+                <h2 className="mb-2 text-lg font-bold text-black">Motivo da desativação</h2>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
                     <div>
-                        <label className="text-black">Senha atual</label>
-                        <PasswordInput
-                            {...register("currentPassword")}
-                            placeholder="Digite a sua senha atual"
-                            id="current-password"
-                            error={errors.currentPassword?.message}
+                        <input
+                            type="text"
+                            placeholder="Digite o motivo"
+                            className={`text-black border rounded-md p-2 w-full ${errors.reason ? 'border-red-500' : 'border-gray-300'
+                                }`}
+                            {...register("reason")}
                         />
-                    </div>
-
-                    <div>
-                        <label className="text-black">Nova senha</label>
-                        <PasswordInput
-                            {...register("newPassword")}
-                            placeholder="Digite a sua nova senha"
-                            id="new-password"
-                            error={errors.newPassword?.message}
-                        />
-                    </div>
-
-                    <div>
-                        <label className="text-black">Confirmação de senha</label>
-                        <PasswordInput
-                            {...register("confirmPassword")}
-                            placeholder="Confirme a sua nova senha"
-                            id="confirm-password"
-                            error={errors.confirmPassword?.message}
-                        />
+                        {errors.reason && (
+                            <p className="mt-1 text-sm text-red-500">{errors.reason.message}</p>
+                        )}
                     </div>
 
                     <div className="mt-4 flex justify-end gap-2">
@@ -115,8 +95,8 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
                             type="submit"
                             disabled={!isValid}
                             className={`rounded-md px-3 py-1 text-sm text-white cursor-pointer ${isValid
-                                    ? 'bg-green-500 hover:bg-green-600'
-                                    : 'bg-gray-400 cursor-not-allowed'
+                                ? 'bg-green-500 hover:bg-green-600'
+                                : 'bg-gray-400 cursor-not-allowed'
                                 }`}
                         >
                             Confirmar
@@ -130,5 +110,5 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
     );
 };
 
-export default ResetPasswordModal;
+export default ReasonModal;
 
