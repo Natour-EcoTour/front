@@ -1,8 +1,9 @@
 'use client'
 import { use } from "react";
+import { mockPoints } from "@/mock";
 import MasterPageTitle from "@/components/MasterPageTitle/MasterPageTitle";
 import PointPhotos from "@/components/PointPhotos/PointPhotos";
-import { mockPoints } from "@/mock";
+import GoBackButton from "@/components/GoBackButton/GoBackButton";
 
 interface MasterPointsIdPageProps {
     params: Promise<{
@@ -11,13 +12,10 @@ interface MasterPointsIdPageProps {
 }
 
 export default function MasterPointsIdPage({ params }: MasterPointsIdPageProps) {
-    // Unwrap the params Promise
     const { id } = use(params);
-    
-    // Find the point by ID
+
     const point = mockPoints.points.find(p => p.id === id);
 
-    // If point not found, show error message
     if (!point) {
         return (
             <div className="p-6 bg-gray-50 min-h-screen">
@@ -31,6 +29,7 @@ export default function MasterPointsIdPage({ params }: MasterPointsIdPageProps) 
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
+            <GoBackButton />
             <MasterPageTitle text={point.name} />
 
             <div className="text-black">
