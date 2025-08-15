@@ -189,6 +189,10 @@ export const mockPoints = {
             deactivation_reason: "",
             created_at: "2025-07-01T09:00:00Z",
             updated_at: "2025-07-10T10:15:00Z",
+            photos: [
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg"
+            ]
         },
         {
             id: "2",
@@ -216,6 +220,18 @@ export const mockPoints = {
             deactivation_reason: "Em reforma",
             created_at: "2025-06-20T07:45:00Z",
             updated_at: "2025-07-05T08:30:00Z",
+            photos: [
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+            ]
         },
         {
             id: "3",
@@ -243,6 +259,18 @@ export const mockPoints = {
             deactivation_reason: null,
             created_at: "2025-07-05T10:10:00Z",
             updated_at: "2025-07-25T11:50:00Z",
+            photos: [
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+            ]
         },
     ],
 }

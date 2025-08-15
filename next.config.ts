@@ -5,7 +5,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.discordapp.com",
+        hostname: "cdn.discordapp.com"
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com"
       },
     ],
   },

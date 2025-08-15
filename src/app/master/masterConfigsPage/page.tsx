@@ -28,7 +28,7 @@ export default function MasterConfigsPage() {
 
                     <div>
                         <button
-                            className='w-full border border-gray-300 rounded-md p-2 text-black bg-green-500 hover:bg-green-600 cursor-pointer'
+                            className='w-full border border-gray-300 rounded-md p-2 text-white font-bold bg-green-500 hover:bg-green-600 cursor-pointer'
                             onClick={() => setIsModalOpen(true)}
                         >
                             Redefinir senha
