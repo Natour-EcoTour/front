@@ -22,9 +22,6 @@ export default function MasterPointsPage() {
     const handleDelete = (id: string) => {
         console.log('Delete', id);
     };
-    const handleView = (id: string) => {
-        console.log('View', id);
-    };
     return (
         <>
             <div className="p-6 bg-gray-50 min-h-screen">
@@ -38,7 +35,6 @@ export default function MasterPointsPage() {
                     points={currentPoints}
                     onEdit={handleEdit}
                     onDelete={handleDelete}
-                    onView={handleView}
                 />
 
                 <Pagination

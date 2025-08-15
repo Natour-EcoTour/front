@@ -7,11 +7,23 @@ import MasterPageTitle from "@/components/MasterPageTitle/MasterPageTitle";
 import UserDetails from "@/components/UserDetails/UserDetails";
 import GoBackButton from "@/components/GoBackButton/GoBackButton";
 
+interface User {
+    id: string;
+    role: string;
+    avatar: string;
+    name: string;
+    points: number;
+    status: string;
+    email: string;
+    deactivation_reason?: string;
+    created_at: string;
+    updated_at: string;
+}
 
 export default function MasterUsersIdPage() {
     const { id } = useParams();
     const router = useRouter();
-    const [user, setUser] = useState<any | null>(null);
+    const [user, setUser] = useState<User | null>(null);
 
 
     useEffect(() => {
@@ -22,7 +34,18 @@ export default function MasterUsersIdPage() {
         if (!foundUser) {
             router.back();
         } else {
-            setUser(foundUser);
+            setUser({
+                id: foundUser.id,
+                role: foundUser.role,
+                avatar: foundUser.avatar || '',
+                name: foundUser.name,
+                points: foundUser.points,
+                status: foundUser.status,
+                email: foundUser.email,
+                deactivation_reason: foundUser.deactivation_reason || undefined,
+                created_at: foundUser.created_at,
+                updated_at: foundUser.updated_at
+            });
         }
     }, [id, router]);
 

@@ -1,4 +1,4 @@
-import { Pencil, Trash, Eye } from 'lucide-react';
+import { Trash, Eye } from 'lucide-react';
 import Switch from "@/components/Switch/Switch"
 import Modal from '@/components/Modal/Modal';
 import { useState } from 'react';
@@ -7,12 +7,10 @@ import { useRouter } from 'next/navigation';
 interface User { id: string; name: string; email: string; points: number; status: string; }
 interface UsersTableProps {
   users: User[];
-  onEdit: (id: string) => void;
   onDelete: (id: string) => void;
-  onView: (id: string) => void;
 }
 
-export function UsersTable({ users, onEdit, onDelete, onView }: UsersTableProps) {
+export function UsersTable({ users, onDelete }: UsersTableProps) {
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);

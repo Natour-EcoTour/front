@@ -17,14 +17,8 @@ export default function MasterUsersPage() {
     goToPage,
   } = usePagination(mockUsers.users, itemsPerPage);
 
-  const handleEdit = (id: string) => {
-    console.log('Edit', id);
-  };
   const handleDelete = (id: string) => {
     console.log('Delete', id);
-  };
-  const handleView = (id: string) => {
-    console.log('View', id);
   };
 
   return (
@@ -38,9 +32,7 @@ export default function MasterUsersPage() {
 
       <UsersTable
         users={currentUsers}
-        onEdit={handleEdit}
         onDelete={handleDelete}
-        onView={handleView}
       />
 
       <Pagination

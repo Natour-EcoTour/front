@@ -9,7 +9,7 @@ export default function MasterReviewsPage() {
     const itemsPerPage = 12;
     const totalItems = mockPointReviews.reviews.length;
     const {
-        currentData: currentPoints,
+        currentData: currentReviews,
         currentPage,
         totalPages,
         goToPage,
@@ -19,7 +19,7 @@ export default function MasterReviewsPage() {
             <div className="p-6 bg-gray-50 min-h-screen">
                 <MasterPageTitle text="Avaliações" />
                 <ReviewsTable
-                    reviews={mockPointReviews.reviews}
+                    reviews={currentReviews}
                 />
                 <Pagination
                     page='avaliações'

@@ -23,10 +23,9 @@ interface PointsTableProps {
     points: Points[];
     onEdit: (id: string) => void;
     onDelete: (id: string) => void;
-    onView: (id: string) => void;
 }
 
-export function PointsTable({ points, onDelete, onView }: PointsTableProps) {
+export function PointsTable({ points, onDelete }: PointsTableProps) {
     const [showWarningModal, setShowWarningModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [selectedId, setSelectedId] = useState<string | null>(null);

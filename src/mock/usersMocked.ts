@@ -37,7 +37,7 @@ export const mockUsers = {
         {
             id: "3",
             role: "3",
-            avat: "https://cdn.discordapp.com/emojis/1318295145002696814.webp?size=128",
+            avatar: "https://cdn.discordapp.com/emojis/1318295145002696814.webp?size=128",
             name: "Alice Wu",
             points: 8,
             status: "Ativo",

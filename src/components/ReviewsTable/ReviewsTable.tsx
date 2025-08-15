@@ -1,8 +1,3 @@
-import { Map, Trash, Eye } from 'lucide-react';
-import Switch from "@/components/Switch/Switch";
-import Modal from '@/components/Modal/Modal';
-import { useState } from 'react';
-
 interface Reviews {
     id: string;
     user: string;

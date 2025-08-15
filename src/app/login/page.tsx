@@ -23,7 +23,7 @@ export default function MasterLogin() {
         resolver: yupResolver(LoginSchema),
     });
 
-    const onSubmit: SubmitHandler<LoginProps> = async (data) => {
+    const onSubmit: SubmitHandler<LoginProps> = async (_data) => {
         setLoginError(null);
         try {
             await new Promise((r) => setTimeout(r, 2000));

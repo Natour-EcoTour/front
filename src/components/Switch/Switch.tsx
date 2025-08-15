@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import Modal from '@/components/Modal/Modal';
 import ReasonModal from '@/components/ReasonModal/ReasonModal';
-import { set } from 'react-hook-form';
 
 interface SwitchProps {
   entity: 'user' | 'point';
