@@ -22,17 +22,23 @@ export default function Home() {
       <main>
         <Header />
 
-        <section className="relative overflow-hidden min-h-screen flex items-center" id='carousel'>
-          <div
-            className="absolute inset-0 bg-[url('/blured_nature_trail.png')] bg-cover bg-center z-0"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-black/20 z-0" aria-hidden="true" />
+        <section className="relative overflow-hidden min-h-screen flex items-center bg-green-600" id='carousel'>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src="/lpvideo.mp4" type="video/mp4" />
+            <div className="absolute inset-0 bg-green-600"></div>
+          </video>
+          <div className="absolute inset-0 bg-black/30 z-0" aria-hidden="true" />
 
-          <div className="relative z-10 w-full px-4 md:px-8 lg:px-16 py-20">
+          <div className="relative z-10 w-full px-4 md:px-8 lg:px-16 py-20 animate-fade-in-up">
             <div className="max-w-7xl mx-auto">
 
-              <div className="text-center mb-12">
+              <div className="text-center mb-12 mt-4">
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 tracking-tight">
                   <span className="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
                     Natour

@@ -104,7 +104,7 @@ export function PointsTable({ points, onDelete }: PointsTableProps) {
 
                                 <td className="px-6 py-4 text-sm">
                                     <div className="flex items-center justify-center">
-                                        <button onClick={() => router.push(`/master/masterPointsPage/${point.id}`)}>
+                                        <button onClick={() => router.push(`/master/pontos/${point.id}`)}>
                                             <Eye size={20} className="text-green-600 hover:text-green-900 cursor-pointer" />
                                         </button>
                                     </div>

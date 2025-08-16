@@ -58,7 +58,7 @@ export function UsersTable({ users, onDelete }: UsersTableProps) {
                 </div>
               </td>
               <td className="px-6 py-4 text-sm">
-                <button onClick={() => router.push(`/master/masterUsersPage/${user.id}`)}>
+                <button onClick={() => router.push(`/master/usuarios/${user.id}`)}>
                   <Eye size={20} className="text-green-600 hover:text-green-900 cursor-pointer" />
                 </button>
               </td>

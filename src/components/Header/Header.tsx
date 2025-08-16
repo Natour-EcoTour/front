@@ -18,14 +18,14 @@ const Header = () => {
 
                 <div className="flex items-center space-x-4">
                     <button
-                        className="text-gray-600 hover:text-green-600 font-medium transition-colors duration-200 hidden sm:block"
-                        onClick={() => window.location.href = '/terms/termosDeUso'}>
+                        className="cursor-pointer text-gray-600 hover:text-green-600 font-medium transition-colors duration-200 hidden sm:block"
+                        onClick={() => window.location.href = '/terms/termos-de-uso'}>
                         Termos de uso
                     </button>
 
                     <button
-                        className="text-gray-600 hover:text-green-600 font-medium transition-colors duration-200 hidden sm:block"
-                        onClick={() => window.location.href = '/terms/politicaDePrivacidade'}>
+                        className="cursor-pointer text-gray-600 hover:text-green-600 font-medium transition-colors duration-200 hidden sm:block"
+                        onClick={() => window.location.href = '/terms/politica-de-privacidade'}>
                         Privacidade
                     </button>
 
