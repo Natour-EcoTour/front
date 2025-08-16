@@ -2,7 +2,7 @@ import HeaderButton from "../HeaderButton/HeaderButton";
 
 const Header = () => {
     return (
-        <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg shadow-sm border-b border-white/20">
+        <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg shadow-sm  border-white/20">
             <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center px-6 py-4 gap-4">
                 <div className="flex items-center">
                     <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
