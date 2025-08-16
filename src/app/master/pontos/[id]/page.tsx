@@ -33,7 +33,7 @@ export default function MasterPointsIdPage({ params }: MasterPointsIdPageProps) 
             <MasterPageTitle text={point.name} />
 
             <div className="text-black">
-                <h2 className="text-xl font-semibold mb-4">Informações do Ponto</h2>
+                <b className="text-xl font-semibold mb-4">Informações do Ponto</b>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div>
                         <p><span className="font-medium">Tipo:</span> {point.point_type}</p>
@@ -54,7 +54,7 @@ export default function MasterPointsIdPage({ params }: MasterPointsIdPageProps) 
             </div>
 
             <div>
-                <h2 className="text-black text-xl font-semibold mb-4">Fotos do Ponto ({point.photos.length})</h2>
+                <b className="text-black text-xl font-semibold mb-4">Fotos do Ponto ({point.photos.length})</b>
                 <PointPhotos photos={point.photos} />
             </div>
         </div>

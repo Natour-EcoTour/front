@@ -12,7 +12,7 @@ export default function MasterConfigsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <>
-            <div className="p-6 bg-gray-50 min-h-screen">
+            <div className="p-6 min-h-screen">
                 <MasterPageTitle text="Configurações" />
 
                 <div className='space-y-6 max-w-md'>

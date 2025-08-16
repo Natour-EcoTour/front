@@ -16,7 +16,7 @@ export default function MasterReviewsPage() {
     } = usePagination(mockPointReviews.reviews, itemsPerPage);
     return (
         <>
-            <div className="p-6 bg-gray-50 min-h-screen">
+            <div className="p-6 min-h-screen">
                 <MasterPageTitle text="Avaliações" />
                 <ReviewsTable
                     reviews={currentReviews}

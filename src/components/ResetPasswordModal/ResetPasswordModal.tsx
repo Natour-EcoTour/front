@@ -69,7 +69,7 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
                     <Lock size={35} className="text-white" />
                 </div>
 
-                <h2 className="mb-2 text-lg font-bold text-black">Redefinir Senha</h2>
+                <b className="mb-2 text-lg font-bold text-black flex justify-center">Redefinir Senha</b>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
                     <div>
@@ -102,7 +102,7 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
                         />
                     </div>
 
-                    <div className="mt-4 flex justify-end gap-2">
+                    <div className="mt-4 flex justify-center gap-2">
                         <button
                             type="button"
                             className="rounded-md border border-black px-3 py-1 text-sm text-black hover:bg-gray-200 cursor-pointer"
@@ -115,8 +115,8 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
                             type="submit"
                             disabled={!isValid}
                             className={`rounded-md px-3 py-1 text-sm text-white cursor-pointer ${isValid
-                                    ? 'bg-green-500 hover:bg-green-600'
-                                    : 'bg-gray-400 cursor-not-allowed'
+                                ? 'bg-green-500 hover:bg-green-600'
+                                : 'bg-gray-400 cursor-not-allowed'
                                 }`}
                         >
                             Confirmar

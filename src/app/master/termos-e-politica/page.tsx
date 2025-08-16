@@ -22,7 +22,7 @@ export default function MasterTermsPage() {
     };
 
     return (
-        <div className="p-6 bg-gray-50 min-h-screen">
+        <div className="p-6 min-h-screen">
             <MasterPageTitle text="Termos e Políticas" />
             <button
                 className="bg-green-500 hover:bg-green-600 text-white py-2 px-10 rounded-md cursor-pointer"
@@ -37,7 +37,7 @@ export default function MasterTermsPage() {
                 type="info"
                 open={showModal}
                 title="Editar termos"
-                message="Edite os campos e clique em Salvar."
+                message='Ao clicar em "Salvar", as alterações serão aplicadas e todos os usuários receberão um e-mail de aviso de atualização atualização.'
                 onClose={() => setShowModal(false)}
                 onConfirm={handleConfirm}
             />

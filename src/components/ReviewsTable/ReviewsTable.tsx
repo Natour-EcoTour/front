@@ -13,7 +13,7 @@ export function ReviewsTable({ reviews }: ReviewsTableProps) {
     return (
         <div className="overflow-hidden rounded-lg border-2 border-green-200">
             <table className="min-w-full table-auto">
-                <thead className="bg-gray-5">
+                <thead className="bg-gray-200">
                     <tr>
                         {['Usuário', 'Ponto', 'Avaliação'].map(h => (
                             <th key={h} className="px-6 py-3 text-left text-emerald-600 text-sm font-bold">{h}</th>

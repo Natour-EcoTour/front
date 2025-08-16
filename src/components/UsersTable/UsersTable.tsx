@@ -33,7 +33,7 @@ export function UsersTable({ users, onDelete }: UsersTableProps) {
   return (
     <div className="overflow-hidden rounded-lg border-2 border-green-200">
       <table className="min-w-full table-auto">
-        <thead className="bg-gray-5">
+        <thead className="bg-gray-200">
           <tr>
             {['Nome', 'E-mail', 'Qnt. pontos', 'Status', 'Ações', 'Detalhes'].map(h => (
               <th key={h} className="px-6 py-3 text-left text-emerald-600 text-sm font-bold">{h}</th>
