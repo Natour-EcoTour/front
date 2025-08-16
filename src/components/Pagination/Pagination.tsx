@@ -23,7 +23,7 @@ export function Pagination({
 
     return (
         <div className="flex items-center justify-between mt-6">
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-black">
                 Mostrando {count} de {totalItems} {page}
             </div>
 

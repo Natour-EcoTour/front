@@ -1,0 +1,62 @@
+'use client'
+import { use } from "react";
+import { mockPoints } from "@/mock";
+import MasterPageTitle from "@/components/MasterPageTitle/MasterPageTitle";
+import PointPhotos from "@/components/PointPhotos/PointPhotos";
+import GoBackButton from "@/components/GoBackButton/GoBackButton";
+
+interface MasterPointsIdPageProps {
+    params: Promise<{
+        id: string;
+    }>;
+}
+
+export default function MasterPointsIdPage({ params }: MasterPointsIdPageProps) {
+    const { id } = use(params);
+
+    const point = mockPoints.points.find(p => p.id === id);
+
+    if (!point) {
+        return (
+            <div className="p-6 bg-gray-50 min-h-screen">
+                <MasterPageTitle text="Ponto não encontrado" />
+                <div className="text-center text-gray-500 mt-8">
+                    <p>O ponto solicitado não foi encontrado.</p>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="p-6 bg-gray-50 min-h-screen">
+            <GoBackButton />
+            <MasterPageTitle text={point.name} />
+
+            <div className="text-black">
+                <b className="text-xl font-semibold mb-4">Informações do Ponto</b>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <p><span className="font-medium">Tipo:</span> {point.point_type}</p>
+                        <p><span className="font-medium">Status:</span> {point.is_active ? 'Ativo' : 'Inativo'}</p>
+                        <p><span className="font-medium">Visualizações:</span> {point.views}</p>
+                        <p><span className="font-medium">Avaliação:</span> {point.avg_rating}/5</p>
+                    </div>
+                    <div>
+                        <p><span className="font-medium">Cidade:</span> {point.city}, {point.state}</p>
+                        <p><span className="font-medium">Bairro:</span> {point.neighborhood}</p>
+                        <p><span className="font-medium">Horário:</span> {point.open_time} - {point.close_time}</p>
+                    </div>
+                </div>
+                <div className="mb-6">
+                    <p><span className="font-medium">Descrição:</span></p>
+                    <p className="text-gray-700 mt-2">{point.description}</p>
+                </div>
+            </div>
+
+            <div>
+                <b className="text-black text-xl font-semibold mb-4">Fotos do Ponto ({point.photos.length})</b>
+                <PointPhotos photos={point.photos} />
+            </div>
+        </div>
+    );
+}

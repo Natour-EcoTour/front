@@ -57,9 +57,9 @@ const Modal = ({ open, onClose, onConfirm, children, title, message, type }: Mod
                 <div className={`mx-auto grid place-items-center w-16 h-16 ${bgByType[type]} rounded-full`}>
                     {typeIcons[type]}
                 </div>
-                <h2 className="mb-2 text-lg font-bold text-black">{title}</h2>
-                {message && <p className="text-sm text-black">{message}</p>}
-                <div className="mt-4 flex justify-end gap-2">
+                <b className="p-3 mb-2 text-lg font-bold text-black flex justify-center">{title}</b>
+                {message && <p className="text-sm text-black flex justify-center">{message}</p>}
+                <div className="p-3 mt-4 flex justify-center gap-2">
                     {type === 'success' ? (
                         <button
                             className={`rounded-md px-3 py-1 text-sm text-white cursor-pointer ${typeColors[type]}`}

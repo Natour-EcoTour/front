@@ -31,9 +31,9 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
                     />
                     <button
                         type="button"
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-black"
+                        className="cursor-pointer absolute right-2 top-1/2 transform -translate-y-1/2 text-black"
                         onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <EyeOff /> : <Eye />}
+                        {showPassword ? <Eye /> : <EyeOff />}
                     </button>
                 </div>
                 {error && <span className="text-red-500 text-sm mt-1">{error}</span>}

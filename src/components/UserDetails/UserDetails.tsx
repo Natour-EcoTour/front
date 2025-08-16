@@ -104,7 +104,7 @@ export function UserDetails({ user }: UserDetailsProps) {
                 onClose={() => setShowWarningModal(false)}
                 onConfirm={sendPassword}
                 title="Redefinir senha"
-                message={`Você tem certeza que deseja redefinir a senha? O usuário ${user.name} receberá um e-mail com as instruções.`}
+                message={`Você tem certeza que deseja redefinir a senha? O usuário "${user.name}" receberá um e-mail com as instruções.`}
                 type="warning"
             />
 
@@ -112,7 +112,7 @@ export function UserDetails({ user }: UserDetailsProps) {
                 open={showSuccessModal}
                 onClose={() => setShowSuccessModal(false)}
                 title="E-mail enviado"
-                message={`O e-mail de redefinição de senha foi enviado com sucesso para ${user.name}.`}
+                message={`A senha de "${user.name}" foi redefinida com sucesso.`}
                 type="success"
             />
         </>

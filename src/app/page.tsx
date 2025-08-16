@@ -14,31 +14,37 @@ export default function Home() {
       />
 
       <meta property="og:title" content="Natour" />
-      <meta property="og:description" content="A sua plataforma imobiliária" />
-      <meta property="og:image" content="https://media.discordapp.net/attachments/1264329016744083477/1387226547605209188/0MOFY.png?ex=6886c2e6&is=68857166&hm=a58d129f402ec4330a5a49f10e363b13b786260d85a652b46e53ebc1bcccb621&=&format=webp&quality=lossless&width=1540&height=505" />
+      <meta property="og:description" content="O Natour é uma plataforma que conecta amantes da natureza e viajantes." />
+      <meta property="og:image" content="https://media.discordapp.net/attachments/1406071153335992360/1406071166308716595/image.png?ex=68a12151&is=689fcfd1&hm=51f7b02703cbbd907d7e5d90f29234c5e4703068f164f74b4f116b7c7caa2622&=&format=webp&quality=lossless&width=976&height=376" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
 
-      <main className="relative pt-20">
+      <main>
         <Header />
 
-        <section className="relative overflow-hidden min-h-screen flex items-center" id='carousel'>
-          <div
-            className="absolute inset-0 bg-[url('/blured_nature_trail.png')] bg-cover bg-center z-0"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-black/20 z-0" aria-hidden="true" />
+        <section className="relative overflow-hidden min-h-screen flex items-center bg-green-600" id='carousel'>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src="/lpvideo.mp4" type="video/mp4" />
+            <div className="absolute inset-0 bg-green-600"></div>
+          </video>
+          <div className="absolute inset-0 bg-black/30 z-0" aria-hidden="true" />
 
-          <div className="relative z-10 w-full px-4 md:px-8 lg:px-16 py-20">
+          <div className="relative z-10 w-full px-4 md:px-8 lg:px-16 py-20 animate-fade-in-up">
             <div className="max-w-7xl mx-auto">
 
-              <div className="text-center mb-12">
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
+              <div className="text-center mb-12 mt-4">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 tracking-tight">
                   <span className="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
                     Natour
                   </span>
                 </h1>
-                <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed">
+                <p className="text-xl md:text-2xl font-sans text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed">
                   Descubra e preserve a natureza através da tecnologia.
                   <span className="block mt-2 font-medium">Sua plataforma para ecoturismo sustentável.</span>
                 </p>
@@ -59,8 +65,8 @@ export default function Home() {
 
           <div className="max-w-7xl mx-auto text-center relative z-10">
             <div className="mb-16">
-              <span className="text-green-600 font-semibold text-lg tracking-wide uppercase">Sobre Nós</span>
-              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mt-4 mb-8 tracking-tight">
+              <span className="text-green-600 font-sans font-semibold text-lg tracking-wide uppercase">Sobre Nós</span>
+              <h2 className="text-4xl md:text-6xl font-serif font-bold text-gray-900 mt-4 mb-8 tracking-tight">
                 Conectando você com a
                 <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent block">
                   natureza
@@ -69,11 +75,11 @@ export default function Home() {
             </div>
 
             <div className="text-lg md:text-xl leading-relaxed text-gray-700 space-y-8 max-w-4xl mx-auto">
-              <p className="text-2xl font-semibold text-green-700 leading-relaxed">
+              <p className="text-2xl font-sans font-semibold text-green-700 leading-relaxed">
                 <strong className="text-green-800">Natour</strong> é uma plataforma digital inovadora desenvolvida para facilitar o cadastro, descoberta e gestão de pontos turísticos naturais.
               </p>
 
-              <p className="leading-8 text-gray-600">
+              <p className="leading-8 font-sans text-gray-600">
                 Voltada tanto para exploradores quanto para gestores e comunidades locais, a Natour combina tecnologia de ponta com uma interface amigável para promover experiências seguras, educativas e sustentáveis ao ar livre.
               </p>
 
@@ -98,8 +104,8 @@ export default function Home() {
         <section className='py-24 px-8 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50' id='downloads'>
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <span className="text-green-600 font-semibold text-lg tracking-wide uppercase">Download</span>
-              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mt-4 mb-8 tracking-tight">
+              <span className="text-green-600 font-sans font-semibold text-lg tracking-wide uppercase">Download</span>
+              <h2 className="text-4xl md:text-6xl font-serif font-bold text-gray-900 mt-4 mb-8 tracking-tight">
                 Baixe nosso
                 <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent block">
                   aplicativo!
@@ -110,10 +116,10 @@ export default function Home() {
             <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 max-w-4xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="text-left">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  <h3 className="text-2xl font-serif font-bold text-gray-900 mb-6">
                     Explore a natureza na palma da sua mão
                   </h3>
-                  <ul className="space-y-4 text-gray-600 mb-8">
+                  <ul className="space-y-4 font-sans text-gray-600 mb-8">
                     <li className="flex items-center">
                       <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
                       Descubra trilhas próximas a você
@@ -127,7 +133,7 @@ export default function Home() {
                       Contribua com novos pontos
                     </li>
                   </ul>
-                  <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                  <button className="cursor-pointer bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-sans font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Baixar APK
                   </button>
                 </div>
@@ -142,7 +148,7 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <p className="mt-8 text-center text-gray-500 text-sm">
+              <p className="mt-8 text-center font-sans text-gray-500 text-sm">
                 *Nosso aplicativo ainda não está disponível na Play Store, mas você pode baixar o APK diretamente do nosso site.
               </p>
             </div>
@@ -157,14 +163,14 @@ export default function Home() {
 
           <div className="relative z-10 max-w-6xl mx-auto px-8 py-24">
             <div className="text-center mb-16">
-              <span className="text-green-400 font-semibold text-lg tracking-wide uppercase">Contato</span>
-              <h2 className="text-4xl md:text-6xl font-bold text-white mt-4 mb-8 tracking-tight">
+              <span className="text-green-400 font-sans font-semibold text-lg tracking-wide uppercase">Contato</span>
+              <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mt-4 mb-8 tracking-tight">
                 Fale
                 <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
                   {" "}conosco
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl font-sans text-gray-300 max-w-3xl mx-auto">
                 Estamos aqui para ajudar! Se você tiver alguma dúvida, sugestão ou feedback, entre em contato conosco.
               </p>
             </div>

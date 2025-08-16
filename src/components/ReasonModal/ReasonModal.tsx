@@ -66,12 +66,13 @@ const ReasonModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
                     <Text size={35} className="text-white" />
                 </div>
 
-                <h2 className="mb-2 text-lg font-bold text-black">Motivo da desativação</h2>
+                <b className="mb-2 text-lg font-bold text-black flex justify-center">Motivo da desativação</b>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
                     <div>
                         <textarea
-                            // type="text"
+                            id="deactivation_reason"
+                            spellCheck={false}
                             placeholder="Digite o motivo"
                             className={`text-black border rounded-md p-2 w-full h-60 ${errors.reason ? 'border-red-500' : 'border-gray-300'
                                 }`}
@@ -82,7 +83,7 @@ const ReasonModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
                         )}
                     </div>
 
-                    <div className="mt-4 flex justify-end gap-2">
+                    <div className="mt-4 flex justify-center gap-2">
                         <button
                             type="button"
                             className="rounded-md border border-black px-3 py-1 text-sm text-black hover:bg-gray-200 cursor-pointer"

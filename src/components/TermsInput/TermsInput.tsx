@@ -7,9 +7,10 @@ export function TermsInput({ onEdit }: TermsInputProps) {
         <div className="flex justify-center gap-10 p-5">
 
             <div className="flex flex-col w-1/2">
-                <h2 className="mb-2 text-lg  text-black font-bold">Termos de Uso</h2>
+                <b className="mb-2 text-lg  text-black font-bold">Termos de Uso</b>
                 <textarea
                     id="terms"
+                    spellCheck={false}
                     disabled={!onEdit}
                     placeholder="Digite os termos de uso..."
                     className={`
@@ -22,9 +23,10 @@ export function TermsInput({ onEdit }: TermsInputProps) {
             </div>
 
             <div className="flex flex-col w-1/2">
-                <h2 className="mb-2 text-lg text-black font-bold">Política de Privacidade</h2>
+                <b className="mb-2 text-lg text-black font-bold">Política de Privacidade</b>
                 <textarea
                     id="policy"
+                    spellCheck={false}
                     disabled={!onEdit}
                     placeholder="Digite a política de privacidade..."
                     className={`
