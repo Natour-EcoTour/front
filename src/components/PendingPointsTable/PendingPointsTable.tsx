@@ -25,23 +25,42 @@ interface PointsTableProps {
     onDelete: (id: string) => void;
 }
 
-export function PointsTable({ points, onDelete }: PointsTableProps) {
-    const [showWarningModal, setShowWarningModal] = useState(false);
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
+export function PendingPointsTable({ points, onDelete }: PointsTableProps) {
+    const [showApproveModal, setShowApproveModal] = useState(false);
+    const [showApproveSuccessModal, setShowApproveSuccessModal] = useState(false);
+    const [showReproveModal, setShowReproveModal] = useState(false);
+    const [showReproveSuccessModal, setShowReproveSuccessModal] = useState(false);
+
     const [selectedId, setSelectedId] = useState<string | null>(null);
 
     const router = useRouter();
 
-    const handleDeleteClick = (id: string) => {
+    const handleApproveClick = (id: string) => {
         setSelectedId(id);
-        setShowWarningModal(true);
+        setShowApproveModal(true);
     };
 
-    const confirmDelete = () => {
-        if (selectedId) onDelete(selectedId);
-        setShowWarningModal(false);
+    const handleReproveClick = (id: string) => {
+        setSelectedId(id);
+        setShowReproveModal(true);
+    };
+
+    const confirmApprove = () => {
+        if (selectedId) {
+            console.log('Approving point:', selectedId);
+        }
+        setShowApproveModal(false);
         setSelectedId(null);
-        setShowSuccessModal(true);
+        setShowApproveSuccessModal(true);
+    };
+
+    const confirmReprove = () => {
+        if (selectedId) {
+            console.log('Rejecting point:', selectedId);
+        }
+        setShowReproveModal(false);
+        setSelectedId(null);
+        setShowReproveSuccessModal(true);
     };
 
     return (
@@ -49,7 +68,7 @@ export function PointsTable({ points, onDelete }: PointsTableProps) {
             <table className="min-w-full table-auto">
                 <thead className="bg-gray-200">
                     <tr>
-                        {['Nome', 'Link', 'Localização', 'Visualizações', 'Status', 'Ações', 'Detalhes'].map(h => (
+                        {['Nome', 'Link', 'Localização', 'Visualizações', 'Detalhes', ''].map(h => (
                             <th key={h} className="px-6 py-3 text-left text-emerald-600 text-sm font-bold">{h}</th>
                         ))}
                     </tr>
@@ -90,22 +109,24 @@ export function PointsTable({ points, onDelete }: PointsTableProps) {
 
                                 <td className="px-6 py-4 text-sm text-gray-500">{point.views}</td>
 
-                                <td className="px-6 py-4">
-                                    <Switch entity="point" />
+                                <td className="px-6 py-4 text-sm">
+                                    <button onClick={() => router.push(`/master/pontos/${point.id}`)}>
+                                        <Eye size={20} className="text-green-600 hover:text-green-900 cursor-pointer" />
+                                    </button>
                                 </td>
 
-                                <td className="px-6 py-4 text-sm">
-                                    <div className="flex space-x-2">
-                                        <button onClick={() => handleDeleteClick(point.id)}>
-                                            <Trash size={16} className="text-red-600 hover:text-red-900 cursor-pointer" />
-                                        </button>
-                                    </div>
-                                </td>
+                                <td className='space-x-3'>
+                                    <button
+                                        onClick={() => handleApproveClick(point.id)}
+                                        className='cursor-pointer bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded'>
+                                        Aprovar
+                                    </button>
 
-                                <td className="px-6 py-4 text-sm">
-                                        <button onClick={() => router.push(`/master/pontos/${point.id}`)}>
-                                            <Eye size={20} className="text-green-600 hover:text-green-900 cursor-pointer" />
-                                        </button>
+                                    <button
+                                        onClick={() => handleReproveClick(point.id)}
+                                        className='cursor-pointer bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded'>
+                                        Reprovar
+                                    </button>
                                 </td>
                             </tr>
                         );
@@ -114,19 +135,36 @@ export function PointsTable({ points, onDelete }: PointsTableProps) {
             </table>
 
             <Modal
-                open={showWarningModal}
-                onClose={() => setShowWarningModal(false)}
-                onConfirm={confirmDelete}
-                title="Deletar ponto"
-                message="Esta ação não pode ser desfeita."
+                open={showApproveModal}
+                onClose={() => setShowApproveModal(false)}
+                onConfirm={confirmApprove}
+                title="Aprovar ponto?"
+                message="Ao aprovar este ponto ele irá aparecer para todos os usuários da plataforma."
+                type="warning"
+            />
+
+            <Modal
+                open={showApproveSuccessModal}
+                onClose={() => setShowApproveSuccessModal(false)}
+                title="Ponto aprovado"
+                message={`O ponto foi aprovado com sucesso.`}
+                type="success"
+            />
+
+            <Modal
+                open={showReproveModal}
+                onClose={() => setShowReproveModal(false)}
+                onConfirm={confirmReprove}
+                title="Reprovar ponto?"
+                message="Ao reprovar este ponto ele não irá aparecer para nenhum usuário da plataforma."
                 type="error"
             />
 
             <Modal
-                open={showSuccessModal}
-                onClose={() => setShowSuccessModal(false)}
-                title="Ponto deletado"
-                message={`O ponto foi deletado com sucesso.`}
+                open={showReproveSuccessModal}
+                onClose={() => setShowReproveSuccessModal(false)}
+                title="Ponto reprovado"
+                message={`O ponto foi reprovado com sucesso.`}
                 type="success"
             />
         </div>

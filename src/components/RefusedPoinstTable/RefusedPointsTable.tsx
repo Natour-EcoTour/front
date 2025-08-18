@@ -25,23 +25,39 @@ interface PointsTableProps {
     onDelete: (id: string) => void;
 }
 
-export function PointsTable({ points, onDelete }: PointsTableProps) {
-    const [showWarningModal, setShowWarningModal] = useState(false);
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
+export function RefusedPointsTable({ points, onDelete }: PointsTableProps) {
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+    const [showApproveModal, setShowApproveModal] = useState(false);
+    const [showApproveSuccessModal, setShowApproveSuccessModal] = useState(false);
     const [selectedId, setSelectedId] = useState<string | null>(null);
 
     const router = useRouter();
 
+    const handleApproveClick = (id: string) => {
+        setSelectedId(id);
+        setShowApproveModal(true);
+    };
+
     const handleDeleteClick = (id: string) => {
         setSelectedId(id);
-        setShowWarningModal(true);
+        setShowDeleteModal(true);
+    };
+
+    const confirmApprove = () => {
+        if (selectedId) {
+            console.log('Approving refused point:', selectedId);
+        }
+        setShowApproveModal(false);
+        setSelectedId(null);
+        setShowApproveSuccessModal(true);
     };
 
     const confirmDelete = () => {
         if (selectedId) onDelete(selectedId);
-        setShowWarningModal(false);
+        setShowDeleteModal(false);
         setSelectedId(null);
-        setShowSuccessModal(true);
+        setShowDeleteSuccessModal(true);
     };
 
     return (
@@ -49,7 +65,7 @@ export function PointsTable({ points, onDelete }: PointsTableProps) {
             <table className="min-w-full table-auto">
                 <thead className="bg-gray-200">
                     <tr>
-                        {['Nome', 'Link', 'Localização', 'Visualizações', 'Status', 'Ações', 'Detalhes'].map(h => (
+                        {['Nome', 'Link', 'Localização', 'Visualizações', 'Detalhes', 'Excluir', ''].map(h => (
                             <th key={h} className="px-6 py-3 text-left text-emerald-600 text-sm font-bold">{h}</th>
                         ))}
                     </tr>
@@ -90,8 +106,10 @@ export function PointsTable({ points, onDelete }: PointsTableProps) {
 
                                 <td className="px-6 py-4 text-sm text-gray-500">{point.views}</td>
 
-                                <td className="px-6 py-4">
-                                    <Switch entity="point" />
+                                <td className="px-6 py-4 text-sm">
+                                    <button onClick={() => router.push(`/master/pontos/${point.id}`)}>
+                                        <Eye size={20} className="text-green-600 hover:text-green-900 cursor-pointer" />
+                                    </button>
                                 </td>
 
                                 <td className="px-6 py-4 text-sm">
@@ -102,10 +120,12 @@ export function PointsTable({ points, onDelete }: PointsTableProps) {
                                     </div>
                                 </td>
 
-                                <td className="px-6 py-4 text-sm">
-                                        <button onClick={() => router.push(`/master/pontos/${point.id}`)}>
-                                            <Eye size={20} className="text-green-600 hover:text-green-900 cursor-pointer" />
-                                        </button>
+                                <td className='space-x-3'>
+                                    <button
+                                        onClick={() => handleApproveClick(point.id)}
+                                        className='cursor-pointer bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded'>
+                                        Aprovar
+                                    </button>
                                 </td>
                             </tr>
                         );
@@ -114,17 +134,34 @@ export function PointsTable({ points, onDelete }: PointsTableProps) {
             </table>
 
             <Modal
-                open={showWarningModal}
-                onClose={() => setShowWarningModal(false)}
+                open={showApproveModal}
+                onClose={() => setShowApproveModal(false)}
+                onConfirm={confirmApprove}
+                title="Aprovar ponto?"
+                message="Ao aprovar este ponto ele irá aparecer para todos os usuários da plataforma."
+                type="warning"
+            />
+
+            <Modal
+                open={showApproveSuccessModal}
+                onClose={() => setShowApproveSuccessModal(false)}
+                title="Ponto aprovado"
+                message={`O ponto foi aprovado com sucesso.`}
+                type="success"
+            />
+
+            <Modal
+                open={showDeleteModal}
+                onClose={() => setShowDeleteModal(false)}
                 onConfirm={confirmDelete}
-                title="Deletar ponto"
-                message="Esta ação não pode ser desfeita."
+                title="Deletar ponto?"
+                message="Ao deletar este ponto ele será removido permanentemente da plataforma."
                 type="error"
             />
 
             <Modal
-                open={showSuccessModal}
-                onClose={() => setShowSuccessModal(false)}
+                open={showDeleteSuccessModal}
+                onClose={() => setShowDeleteSuccessModal(false)}
                 title="Ponto deletado"
                 message={`O ponto foi deletado com sucesso.`}
                 type="success"
