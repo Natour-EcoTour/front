@@ -2,18 +2,20 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginSchema } from '@/validations/LoginSchema';
 import { Eye, EyeOff } from "lucide-react";
 
+import { login } from '@/utils/tokenUtils';
+
 interface LoginProps {
     email: string;
     password: string;
+    rememberMe: boolean;
 }
 
 export default function MasterLogin() {
-    const [loginError, setLoginError] = useState<string | null>(null);
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
 
@@ -25,13 +27,16 @@ export default function MasterLogin() {
         resolver: yupResolver(LoginSchema),
     });
 
-    const onSubmit: SubmitHandler<LoginProps> = async (_data) => {
-        setLoginError(null);
+    const onSubmit = async (data: LoginProps) => {
         try {
-            await new Promise((r) => setTimeout(r, 2000));
+            await login({
+                email: data.email,
+                password: data.password,
+                rememberMe: data.rememberMe
+            });
             router.push('/master/inicio');
         } catch {
-            setLoginError('Erro ao fazer login. Tente novamente.');
+            console.error('Login failed');
         }
     };
 
@@ -105,16 +110,17 @@ export default function MasterLogin() {
                                 )}
                             </div>
 
-                            {loginError && (
-                                <div className="p-3 bg-red-100 border border-red-300 rounded-xl">
-                                    <p className="text-red-700 text-sm text-center flex items-center justify-center gap-2">
-                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                                        </svg>
-                                        {loginError}
-                                    </p>
-                                </div>
-                            )}
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="rememberMe"
+                                    {...register('rememberMe')}
+                                    className="w-4 h-4 text-green-500 bg-white/10 border-gray-300"
+                                />
+                                <label htmlFor="rememberMe" className="ml-2 text-sm text-gray-700">
+                                    Lembrar de mim
+                                </label>
+                            </div>
 
                             <button
                                 type="submit"

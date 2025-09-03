@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Merriweather } from "next/font/google";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 
 const playfairDisplay = Merriweather({
@@ -40,6 +42,17 @@ export default function RootLayout({
         className={`${playfairDisplay.variable} ${inter.variable} ${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
         {children}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </body>
     </html>
   );
