@@ -1,6 +1,24 @@
+'use client'
 import Link from 'next/link';
+import { getTerm, TermResponse } from "@/services/terms/getTermService";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function PoliticaDePrivacidade() {
+    const [term, setTerm] = useState<TermResponse | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchTerm = async () => {
+            setIsLoading(true);
+            const termData = await getTerm(2);
+            setTerm(termData);
+            setIsLoading(false);
+        };
+
+        fetchTerm();
+    }, []);
+
     return (
         <>
             <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -11,13 +29,27 @@ export default function PoliticaDePrivacidade() {
                             Política de Privacidade
                         </h1>
                         <p className="text-lg text-gray-600">
-                            Última atualização: {new Date().toLocaleDateString('pt-BR')}
+                            Última atualização: {term?.updated_at ? new Date(term.updated_at).toLocaleDateString('pt-BR') : 'Não atualizado'}
                         </p>
                     </div>
 
                     <div className="bg-white rounded-lg shadow-lg p-8 space-y-8">
 
-                        <h1 className="text-black">Conteúdo da Política de Privacidade</h1>
+                        {isLoading ? (
+                            <div className="flex justify-center">
+                                <h1 className="text-black">Carregando...</h1>
+                                <Image
+                                    src="/black_loading.svg"
+                                    alt="Carregando"
+                                    width={20}
+                                    height={20}
+                                    unoptimized
+                                    className="animate-spin"
+                                />
+                            </div>
+                        ) : (
+                            <h1 className="text-black">{term?.content}</h1>
+                        )}
 
                         <div className="border-t pt-8 mt-8">
                             <div className="flex flex-col sm:flex-row justify-between items-center">

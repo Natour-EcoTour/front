@@ -1,7 +1,7 @@
 import Modal from "@/components/Modal/Modal";
 import Image from "next/image";
 import { useState } from "react";
-import ResetPasswordButton from "../ResetPasswordButton/ResetPasswordButton";
+import ResetPasswordButton from "@/components/ResetPasswordButton/ResetPasswordButton";
 
 interface UserDetailsProps {
     user: {

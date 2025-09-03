@@ -1,5 +1,5 @@
 import { Router } from "next/router";
-import { loginUser } from "../../services/auth/authService";
+import { loginUser } from "@/services/auth/authService";
 
 export const login = async (data: { email: string; password: string; rememberMe: boolean }) => {
     try {

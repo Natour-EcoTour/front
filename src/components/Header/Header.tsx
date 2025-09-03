@@ -1,4 +1,4 @@
-import HeaderButton from "../HeaderButton/HeaderButton";
+import HeaderButton from "@/components/HeaderButton/HeaderButton";
 
 const Header = () => {
     return (
