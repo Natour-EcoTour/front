@@ -2,7 +2,7 @@ import HomeButton from "@/components/HomeButton/HomeButton";
 
 export default function MasterUsersPage() {
     return (
-        // TODO APENAS DEIXAR ENTRAR NESSA TELA EM DIANTE SE TIVER COM TOKEN E TOKEN VALIDO
+        // TODO APENAS DEIXAR ENTRAR NESSA TELA EM DIANTE SE FOR MASTER
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center mt-10 px-4 max-w-6xl mx-auto">
             <HomeButton
                 name="Usuários"
@@ -38,6 +38,7 @@ export default function MasterUsersPage() {
                 name="Sair"
                 description="Sair do sistema"
                 href="/"
+                isExit
             />
         </div>
     );

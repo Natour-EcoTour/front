@@ -1,13 +1,13 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginSchema } from '@/validations/LoginSchema';
 import { Eye, EyeOff } from "lucide-react";
 
-import { login } from '@/utils/tokenUtils';
+import { login, validateTokenAndRedirect } from '@/utils/tokenUtils';
 
 interface LoginProps {
     email: string;
@@ -17,6 +17,7 @@ interface LoginProps {
 
 export default function MasterLogin() {
     const [showPassword, setShowPassword] = useState(false);
+    const [isCheckingToken, setIsCheckingToken] = useState(true);
     const router = useRouter();
 
     const {
@@ -26,6 +27,22 @@ export default function MasterLogin() {
     } = useForm<LoginProps>({
         resolver: yupResolver(LoginSchema),
     });
+
+    useEffect(() => {
+        const checkExistingToken = async () => {
+            try {
+                const isValid = await validateTokenAndRedirect(router);
+                if (!isValid) {
+                    setIsCheckingToken(false);
+                }
+            } catch (error) {
+                console.error('Error checking token:', error);
+                setIsCheckingToken(false);
+            }
+        };
+
+        checkExistingToken();
+    }, [router]);
 
     const onSubmit = async (data: LoginProps) => {
         try {
@@ -39,6 +56,38 @@ export default function MasterLogin() {
             console.error('Login failed');
         }
     };
+
+    if (isCheckingToken) {
+        return (
+            <main className="relative min-h-screen flex items-center justify-center p-4">
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/nature_trail.jpg"
+                        alt="Nature Trail Background"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-green-800/70 to-emerald-900/80 backdrop-blur-sm"></div>
+                </div>
+                <section className="relative z-10 w-full max-w-md">
+                    <div className="backdrop-blur-sm bg-white/95 border border-white/30 rounded-3xl shadow-2xl p-8">
+                        <div className="flex flex-col items-center justify-center space-y-4">
+                            <Image
+                                src="/black_loading.svg"
+                                alt="Carregando"
+                                width={40}
+                                height={40}
+                                unoptimized
+                                className="animate-spin"
+                            />
+                            <p className="text-gray-700 text-lg">Verificando credenciais...</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        );
+    }
 
     return (
         <>

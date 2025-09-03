@@ -28,8 +28,8 @@ apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-      await localStorage.removeItem('access');
-      await localStorage.removeItem('refresh');
+      localStorage.removeItem('access');
+      localStorage.removeItem('refresh');
       
       const errorMessage = error.response?.data?.error || 
                           error.response?.data?.message || 
