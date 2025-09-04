@@ -67,7 +67,7 @@ export default function MasterReviewsPage() {
         };
 
         fetchReviews();
-    }, [currentPage]);
+    }, [currentPage, itemsPerPage]);
 
     const goToPage = (page: number) => {
         setCurrentPage(page);

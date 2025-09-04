@@ -6,6 +6,7 @@ import { SearchInput } from '@/components/SearchInput/SearchInput';
 import MasterPageTitle from '@/components/MasterPageTitle/MasterPageTitle';
 
 import { listUsers, UserItem, UserListResponse } from '@/services/users/listUsersService';
+import { deleteUser } from '@/services/users/deleteUserService';
 
 export default function MasterUsersPage() {
   const [users, setUsers] = useState<UserItem[]>([]);
@@ -51,7 +52,7 @@ export default function MasterUsersPage() {
     };
 
     fetchUsers();
-  }, [currentPage]);
+  }, [currentPage, itemsPerPage]);
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
@@ -68,8 +69,17 @@ export default function MasterUsersPage() {
     );
   }
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     console.log('Delete', id);
+    try {
+      setIsLoading(true);
+      await deleteUser(id);
+      setUsers(users.filter(user => user.id !== id));
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

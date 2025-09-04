@@ -2,27 +2,29 @@
 import { useState } from 'react';
 import Modal from '@/components/Modal/Modal';
 import ReasonModal from '@/components/ReasonModal/ReasonModal';
+import { changeUserStatus } from '@/services/users/userStatsService';
 
 interface SwitchProps {
   entity: 'user' | 'point';
   status?: boolean;
+  userId?: string;
 }
-
-export default function Switch({ entity, status }: SwitchProps) {
+export default function Switch({ entity, status, userId }: SwitchProps) {
   const [isOn, setIsOn] = useState(status || false);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showReasonModal, setShowReasonModal] = useState(false);
 
-  const handleToggle = () => {
+  const handleToggle = async () => {
     if (isOn) {
       setShowWarningModal(true);
     } else {
+      await changeUserStatus(userId!, true, '');
       setIsOn(true);
     }
   };
 
-  const confirmDeactivate = () => {
+  const confirmDeactivate = async () => {
     setShowWarningModal(false);
     if (entity === 'user') {
       setShowReasonModal(true);
@@ -32,10 +34,17 @@ export default function Switch({ entity, status }: SwitchProps) {
     }
   };
 
-  const handleReasonSubmit = () => {
-    setIsOn(false);
-    setShowReasonModal(false);
-    setShowSuccessModal(true);
+  const handleReasonSubmit = async (data: { reason: string }) => {
+    try {
+      if (entity === 'user') {
+        await changeUserStatus(userId!, false, data.reason);
+      }
+      setIsOn(false);
+      setShowReasonModal(false);
+      setShowSuccessModal(true);
+    } catch (error) {
+      console.error('Error updating user status:', error);
+    }
   };
 
   type ModalCopy = { title: string; message: string; type: 'info' | 'warning' | 'error' };

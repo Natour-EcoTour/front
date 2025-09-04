@@ -1,14 +1,16 @@
-import { Trash, Eye } from 'lucide-react';
-import Switch from "@/components/Switch/Switch"
-import Modal from '@/components/Modal/Modal';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { Trash, Eye } from 'lucide-react';
+
+import Switch from "@/components/Switch/Switch"
+import Modal from '@/components/Modal/Modal';
 import { UserItem } from '@/services/users/listUsersService';
 
 interface UsersTableProps {
   users: UserItem[];
   onDelete: (id: string) => void;
+  isLoading?: boolean;
 }
 
 export function UsersTable({ users, onDelete }: UsersTableProps) {
@@ -30,7 +32,7 @@ export function UsersTable({ users, onDelete }: UsersTableProps) {
       setShowSuccessModal(true);
     }
   };
-
+  // TODO ADICIONAR LOADING NOS MODALS E DISABLE
   return (
     <div className="overflow-hidden rounded-lg border-2 border-green-200">
       <table className="min-w-full table-auto">
@@ -52,6 +54,7 @@ export function UsersTable({ users, onDelete }: UsersTableProps) {
                 <Switch
                   entity='user'
                   status={user.is_active}
+                  userId={user.id}
                 />
               </td>
               <td className="px-6 py-4 text-sm">
