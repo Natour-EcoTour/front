@@ -5,10 +5,11 @@ import ReasonModal from '@/components/ReasonModal/ReasonModal';
 
 interface SwitchProps {
   entity: 'user' | 'point';
+  status?: boolean;
 }
 
-export default function Switch({ entity }: SwitchProps) {
-  const [isOn, setIsOn] = useState(false);
+export default function Switch({ entity, status }: SwitchProps) {
+  const [isOn, setIsOn] = useState(status || false);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showReasonModal, setShowReasonModal] = useState(false);

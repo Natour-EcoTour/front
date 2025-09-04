@@ -38,17 +38,17 @@ export default function MasterReviewsPage() {
             setIsLoading(true);
             try {
                 const reviewsData: ReviewsResponse = await getReviews({ page: currentPage });
-                
+
                 const transformedReviews: ReviewItem[] = reviewsData.results.map(review => ({
                     id: review.id.toString(),
                     user: review.username,
                     point: review.point_name,
                     rating: review.rating
                 }));
-                
+
                 setReviews(transformedReviews);
                 setTotalItems(reviewsData.count);
-                
+
                 if (currentPage === 1 && reviewsData.results.length > 0) {
                     setItemsPerPage(reviewsData.results.length);
                 }
@@ -67,7 +67,7 @@ export default function MasterReviewsPage() {
         };
 
         fetchReviews();
-    }, [currentPage, itemsPerPage]);
+    }, [currentPage]);
 
     const goToPage = (page: number) => {
         setCurrentPage(page);
