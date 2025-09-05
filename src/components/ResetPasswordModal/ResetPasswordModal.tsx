@@ -4,8 +4,13 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import PasswordInput from "@/components/PasswordInput/PasswordInput";
+
 import { UpdatePasswordSchema } from "@/validations/UpdatePasswordSchema";
+
+import { changeUserPassword } from "@/services/auth/changePasswordService";
+import { toast } from "react-toastify";
 
 interface ModalProps {
     open: boolean;
@@ -15,9 +20,9 @@ interface ModalProps {
 }
 
 interface UpdatePasswordFormData {
-    currentPassword: string;
-    newPassword: string;
-    confirmPassword: string;
+    old_password: string;
+    new_password: string;
+    confirm_password: string;
 }
 
 const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
@@ -43,9 +48,16 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
         }
     }, [open, reset]);
 
-    const onSubmit = (data: UpdatePasswordFormData) => {
+    const onSubmit = async (data: UpdatePasswordFormData) => {
         if (onConfirm) {
-            onConfirm(data);
+            try {
+                await changeUserPassword(data.old_password, data.new_password, data.confirm_password);
+                onConfirm(data);
+            } catch (error: any) {
+                // TODO TRAZER MENSAGEM DE ERRO CORRETA
+                toast.error(error?.response.data?.message || 'Erro ao alterar a senha. Verifique os dados e tente novamente.');
+                console.error('Error changing password:', error);
+            }
         }
     };
 
@@ -75,30 +87,30 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
                     <div>
                         <label className="text-black">Senha atual</label>
                         <PasswordInput
-                            {...register("currentPassword")}
+                            {...register("old_password")}
                             placeholder="Digite a sua senha atual"
                             id="current-password"
-                            error={errors.currentPassword?.message}
+                            error={errors.old_password?.message}
                         />
                     </div>
 
                     <div>
                         <label className="text-black">Nova senha</label>
                         <PasswordInput
-                            {...register("newPassword")}
+                            {...register("new_password")}
                             placeholder="Digite a sua nova senha"
                             id="new-password"
-                            error={errors.newPassword?.message}
+                            error={errors.new_password?.message}
                         />
                     </div>
 
                     <div>
                         <label className="text-black">Confirmação de senha</label>
                         <PasswordInput
-                            {...register("confirmPassword")}
+                            {...register("confirm_password")}
                             placeholder="Confirme a sua nova senha"
                             id="confirm-password"
-                            error={errors.confirmPassword?.message}
+                            error={errors.confirm_password?.message}
                         />
                     </div>
 

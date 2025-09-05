@@ -8,9 +8,9 @@ import { getMyInfo, MyInfoResponse } from '@/services/auth/myInfoService';
 import Image from 'next/image';
 
 interface UpdatePasswordFormData {
-    currentPassword: string;
-    newPassword: string;
-    confirmPassword: string;
+    old_password: string;
+    new_password: string;
+    confirm_password: string;
 }
 export default function MasterConfigsPage() {
     const [isLoading, setIsLoading] = useState(true);
@@ -91,7 +91,6 @@ export default function MasterConfigsPage() {
                     open={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
                     onConfirm={(data: UpdatePasswordFormData) => {
-                        console.log('Password update data:', data);
                         setIsModalOpen(false);
                     }}
                 />
