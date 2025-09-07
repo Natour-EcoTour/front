@@ -8,9 +8,8 @@ interface UserDetailsProps {
         id: string;
         name: string;
         email: string;
-        avatar: string;
-        status: string;
-        deactivation_reason?: string;
+        photo: string;
+        is_active: boolean;
         created_at: string;
         updated_at: string;
         points: number;
@@ -31,7 +30,7 @@ export function UserDetails({ user }: UserDetailsProps) {
     return (
         <>
             <Image
-                src={user.avatar || '/no_user.png'}
+                src={user.photo || '/no_user.png'}
                 alt={user.name}
                 width={150}
                 height={150}
@@ -49,21 +48,12 @@ export function UserDetails({ user }: UserDetailsProps) {
                     <div className="space-y-1">
                         <label className="text-sm font-medium text-gray-600 uppercase tracking-wide">Status:</label>
                         <div className="flex items-center">
-                            <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${user.status === 'Ativo'
+                            <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${user.is_active
                                 ? 'bg-green-100 text-green-800'
                                 : 'bg-red-100 text-red-800'
                                 }`}>
-                                {user.status}
+                                {user.is_active ? 'Ativo' : 'Inativo'}
                             </span>
-                        </div>
-                    </div>
-
-                    <div className="space-y-1">
-                        <label className="text-sm font-medium text-gray-600 uppercase tracking-wide">Motivo:</label>
-                        <div className="text-gray-900 font-medium">
-                            {user.deactivation_reason || (
-                                <span className="text-gray-500 italic">--</span>
-                            )}
                         </div>
                     </div>
 

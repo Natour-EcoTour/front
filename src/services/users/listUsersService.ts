@@ -11,6 +11,7 @@ export interface UserItem {
     email: string;
     is_active: boolean;
     is_staff: boolean;
+    points: number;
 }
 
 export interface UserListResponse {
@@ -23,7 +24,7 @@ export interface UserListResponse {
 export const listUsers = async (params: UserListParams) => {
     try {
         const response = await apiClient.get("users/list/", { params });
-        console.log('User list response:', response.data); // Log the entire response data
+        console.log('User list response:', response.data);
         return response.data as UserListResponse;
     } catch (error: unknown) {
         throw error;

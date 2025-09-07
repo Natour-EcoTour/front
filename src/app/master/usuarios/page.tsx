@@ -29,7 +29,8 @@ export default function MasterUsersPage() {
           username: user.username,
           email: user.email,
           is_active: user.is_active,
-          is_staff: user.is_staff
+          is_staff: user.is_staff,
+          points: user.points,
         }));
 
         setUsers(transformedUsers);
