@@ -2,6 +2,7 @@ import Modal from "@/components/Modal/Modal";
 import Image from "next/image";
 import { useState } from "react";
 import ResetPasswordButton from "@/components/ResetPasswordButton/ResetPasswordButton";
+import { resetUserPassword } from "@/services/users/resetUserPasswordService";
 
 interface UserDetailsProps {
     user: {
@@ -21,10 +22,14 @@ export function UserDetails({ user }: UserDetailsProps) {
     const [showWarningModal, setShowWarningModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-    const sendPassword = () => {
-        console.log('Enviar e-mail de redefinição de senha');
-        setShowWarningModal(false);
-        setShowSuccessModal(true);
+    const sendPassword = async () => {
+        try {
+            await resetUserPassword(user.id);
+            setShowWarningModal(false);
+            setShowSuccessModal(true);
+        } catch (error) {
+            console.error("Error resetting password:", error);
+        }
     };
 
     return (

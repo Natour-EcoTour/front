@@ -1,13 +1,12 @@
 'use client'
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MasterPageTitle from "@/components/MasterPageTitle/MasterPageTitle";
 import UserDetails from "@/components/UserDetails/UserDetails";
 import GoBackButton from "@/components/GoBackButton/GoBackButton";
 
 import { getUserDetails, UserDetailsResponse } from "@/services/users/userDetailsService";
-
 // TODO adicionar aréa para mostrar pontos do usuário
 
 export default function MasterUsersIdPage() {
