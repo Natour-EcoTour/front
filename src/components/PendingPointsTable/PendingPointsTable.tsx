@@ -1,5 +1,4 @@
-import { Map, Trash, Eye } from 'lucide-react';
-import Switch from "@/components/Switch/Switch";
+import { Map, Eye } from 'lucide-react';
 import Modal from '@/components/Modal/Modal';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';

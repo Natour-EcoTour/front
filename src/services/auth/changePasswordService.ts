@@ -1,5 +1,4 @@
 import apiClient from '@/services/apiClient';
-// TODO AJUSTAR SERIALIZER PARA QUANDO O USUARIO COLOCA SENHA ANTIGA ERRADA
 export const changeUserPassword = async (old_password: string,
     new_password: string,
     confirm_password: string) => {

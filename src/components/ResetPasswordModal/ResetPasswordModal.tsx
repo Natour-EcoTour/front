@@ -53,9 +53,14 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
             try {
                 await changeUserPassword(data.old_password, data.new_password, data.confirm_password);
                 onConfirm(data);
-            } catch (error: any) {
-                // TODO TRAZER MENSAGEM DE ERRO CORRETA
-                toast.error(error?.response.data?.message || 'Erro ao alterar a senha. Verifique os dados e tente novamente.');
+            } catch (error: unknown) {
+                let errorMessage = 'Erro ao alterar a senha. Verifique os dados e tente novamente.';
+                
+                if (error instanceof Error) {
+                    errorMessage = error.message;
+                }
+                
+                toast.error(errorMessage);
                 console.error('Error changing password:', error);
             }
         }

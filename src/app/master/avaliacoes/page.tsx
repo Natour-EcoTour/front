@@ -5,6 +5,7 @@ import { getReviews } from '@/services/reviews/getReviewsService';
 
 import MasterPageTitle from '@/components/MasterPageTitle/MasterPageTitle'
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface ReviewItem {
     id: string;
@@ -78,7 +79,15 @@ export default function MasterReviewsPage() {
             <div className="p-6 min-h-screen">
                 <MasterPageTitle text="Avaliações" />
                 <div className="flex justify-center items-center h-64">
-                    <div className="text-lg text-gray-600">Carregando avaliações...</div>
+                    <Image
+                        src="/black_loading.svg"
+                        alt="Carregando"
+                        width={40}
+                        height={40}
+                        unoptimized
+                        className="animate-spin"
+                    />
+                    <div className="text-lg text-black font-bold">Carregando avaliações...</div>
                 </div>
             </div>
         );

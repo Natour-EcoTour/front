@@ -46,7 +46,7 @@ export default function MasterConfigsPage() {
                         unoptimized
                         className="animate-spin"
                     />
-                    <div className="text-lg text-gray-600">Carregando dados...</div>
+                    <div className="text-lg text-black font-bold">Carregando dados...</div>
                 </div>
             </div>
         );
@@ -90,7 +90,7 @@ export default function MasterConfigsPage() {
                 <ResetPasswordModal
                     open={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
-                    onConfirm={(data: UpdatePasswordFormData) => {
+                    onConfirm={() => {
                         setIsModalOpen(false);
                     }}
                 />

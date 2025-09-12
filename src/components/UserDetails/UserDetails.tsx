@@ -13,7 +13,6 @@ interface UserDetailsProps {
         is_active: boolean;
         created_at: string;
         updated_at: string;
-        points: number;
     };
 }
 
@@ -71,11 +70,6 @@ export function UserDetails({ user }: UserDetailsProps) {
                                 year: 'numeric'
                             })}
                         </div>
-                    </div>
-
-                    <div className="space-y-1">
-                        <label className="text-sm font-medium text-gray-600 uppercase tracking-wide">Pontos:</label>
-                        <div className="text-2xl text-black">{user.points}</div>
                     </div>
 
                     <div className="space-y-1">

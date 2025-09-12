@@ -55,7 +55,7 @@ export const validateTokenAndRedirect = async (router: AppRouterInstance): Promi
         console.error('Token validation failed:', error);
 
         try {
-            router.replace('/');
+            router.replace('/login');
             localStorage.removeItem('access');
             localStorage.removeItem('refresh');
         } catch (clearError) {

@@ -7,7 +7,7 @@ import UserDetails from "@/components/UserDetails/UserDetails";
 import GoBackButton from "@/components/GoBackButton/GoBackButton";
 
 import { getUserDetails, UserDetailsResponse } from "@/services/users/userDetailsService";
-// TODO adicionar aréa para mostrar pontos do usuário
+import Image from "next/image";
 
 export default function MasterUsersIdPage() {
     const [isLoading, setIsloading] = useState(false);
@@ -31,11 +31,33 @@ export default function MasterUsersIdPage() {
         fetchUserDetails();
     }, [userId]);
 
-    if (!user) {
-        return <div className="p-6">Carregando usuário...</div>;
+    if (isLoading) {
+        return (
+            <div className="p-6 min-h-screen">
+                <div className="flex justify-center items-center h-64">
+                    <Image
+                        src="/black_loading.svg"
+                        alt="Carregando"
+                        width={40}
+                        height={40}
+                        unoptimized
+                        className="animate-spin"
+                    />
+                    <div className="text-lg text-black font-bold">Carregando usuário...</div>
+                </div>
+            </div>
+        );
     }
 
-
+    if (!user) {
+        return (
+            <div className="p-6 min-h-screen">
+                <div className="flex justify-center items-center h-64">
+                    <div className="text-lg text-red-600 font-bold">Usuário não encontrado</div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
@@ -50,8 +72,7 @@ export default function MasterUsersIdPage() {
                     photo: user.photo || '',
                     is_active: user.is_active,
                     created_at: user.created_at,
-                    updated_at: user.updated_at,
-                    points: user.points
+                    updated_at: user.updated_at
                 }}
             />
 
