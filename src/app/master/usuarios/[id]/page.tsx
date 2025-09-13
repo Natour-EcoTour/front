@@ -1,67 +1,79 @@
 'use client'
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { mockUsers } from "@/mock/usersMocked";
 import MasterPageTitle from "@/components/MasterPageTitle/MasterPageTitle";
 import UserDetails from "@/components/UserDetails/UserDetails";
 import GoBackButton from "@/components/GoBackButton/GoBackButton";
 
-interface User {
-    id: string;
-    role: string;
-    avatar: string;
-    name: string;
-    points: number;
-    status: string;
-    email: string;
-    deactivation_reason?: string;
-    created_at: string;
-    updated_at: string;
-}
+import { getUserDetails, UserDetailsResponse } from "@/services/users/userDetailsService";
+import Image from "next/image";
 
 export default function MasterUsersIdPage() {
-    const { id } = useParams();
-    const router = useRouter();
-    const [user, setUser] = useState<User | null>(null);
-
+    const [isLoading, setIsloading] = useState(false);
+    const [user, setUser] = useState<UserDetailsResponse | null>(null);
+    const params = useParams();
+    const userId = params.id as string;
 
     useEffect(() => {
-        if (!id) return;
+        const fetchUserDetails = async () => {
+            setIsloading(true);
+            try {
+                const userData: UserDetailsResponse = await getUserDetails(userId);
+                setUser(userData);
+            } catch (error) {
+                console.error("Error fetching user details:", error);
+            } finally {
+                setIsloading(false);
+            }
+        };
 
-        const foundUser = mockUsers.users.find(u => u.id === id);
+        fetchUserDetails();
+    }, [userId]);
 
-        if (!foundUser) {
-            router.back();
-        } else {
-            setUser({
-                id: foundUser.id,
-                role: foundUser.role,
-                avatar: foundUser.avatar || '',
-                name: foundUser.name,
-                points: foundUser.points,
-                status: foundUser.status,
-                email: foundUser.email,
-                deactivation_reason: foundUser.deactivation_reason || undefined,
-                created_at: foundUser.created_at,
-                updated_at: foundUser.updated_at
-            });
-        }
-    }, [id, router]);
-
-    if (!user) {
-        return <div className="p-6">Carregando usuário...</div>;
+    if (isLoading) {
+        return (
+            <div className="p-6 min-h-screen">
+                <div className="flex justify-center items-center h-64">
+                    <Image
+                        src="/black_loading.svg"
+                        alt="Carregando"
+                        width={40}
+                        height={40}
+                        unoptimized
+                        className="animate-spin"
+                    />
+                    <div className="text-lg text-black font-bold">Carregando usuário...</div>
+                </div>
+            </div>
+        );
     }
 
-
+    if (!user) {
+        return (
+            <div className="p-6 min-h-screen">
+                <div className="flex justify-center items-center h-64">
+                    <div className="text-lg text-red-600 font-bold">Usuário não encontrado</div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
             <GoBackButton />
-            <MasterPageTitle text={user.name} />
+            <MasterPageTitle text={user.username} />
 
             <UserDetails
-                user={user}
+                user={{
+                    id: user.id.toString(),
+                    name: user.username,
+                    email: user.email,
+                    photo: user.photo || '',
+                    is_active: user.is_active,
+                    created_at: user.created_at,
+                    updated_at: user.updated_at
+                }}
             />
 
         </div>

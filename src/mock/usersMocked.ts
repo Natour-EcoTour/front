@@ -165,7 +165,7 @@ export const mockPoints = {
     points: [
         {
             id: "1",
-            user: "1",                   // refers to mockUsers.users[0]
+            user: "1",
             name: "Cachoeira do Cedro",
             status: true,
             views: 128,
@@ -270,6 +270,37 @@ export const mockPoints = {
                 "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
                 "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
                 "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+            ]
+        },
+        {
+            id: "1",
+            user: "1",
+            name: "Cachoeira do Cedro",
+            status: null,
+            views: 128,
+            avg_rating: 4,
+            is_active: true,
+            description: "Uma bela cachoeira com três quedas principais.",
+            week_start: "2025-08-10",
+            week_end: "2025-08-16",
+            open_time: "08:00:00",
+            close_time: "18:00:00",
+            point_type: "water_fall",
+            link: "https://example.com/cedro",
+            // latitude: -23.550520,
+            // longitude: -46.633308,
+            zip_code: "01000-000",
+            city: "São Paulo",
+            neighborhood: "Centro",
+            state: "SP",
+            street: "Av. Paulista",
+            number: "1000",
+            deactivation_reason: "",
+            created_at: "2025-07-01T09:00:00Z",
+            updated_at: "2025-07-10T10:15:00Z",
+            photos: [
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg",
+                "https://res.cloudinary.com/demo/image/upload/v1620000000/sample.jpg"
             ]
         },
     ],

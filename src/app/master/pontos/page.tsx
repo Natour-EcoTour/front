@@ -1,50 +1,35 @@
 'use client'
 
-import { usePagination } from '@/app/hooks/usePagination';
+import { useState } from 'react';
 import MasterPageTitle from '@/components/MasterPageTitle/MasterPageTitle'
-import { Pagination } from '@/components/Pagination/Pagination';
+import { PendingPointsTable } from '@/components/PendingPointsTable/PendingPointsTable';
 import { PointsTable } from '@/components/PointsTable/PointsTable';
-import SearchInput from '@/components/SearchInput/SearchInput'
-import { mockPoints } from '@/mock/usersMocked';
+import PointStatusButton from '@/components/PointStatusButton/PointStatusButton';
+import { RefusedPointsTable } from '@/components/RefusedPoinstTable/RefusedPointsTable';
 
 export default function MasterPointsPage() {
-    const itemsPerPage = 12;
-    const totalItems = mockPoints.points.length;
-    const {
-        currentData: currentPoints,
-        currentPage,
-        totalPages,
-        goToPage,
-    } = usePagination(mockPoints.points, itemsPerPage);
-    const handleEdit = (id: string) => {
-        console.log('Edit', id);
-    };
-    const handleDelete = (id: string) => {
-        console.log('Delete', id);
-    };
+    const [selectedStatus, setSelectedStatus] = useState<string>("pending");
     return (
         <>
             <div className="p-6 min-h-screen">
                 <MasterPageTitle text="Pontos" />
 
-                <SearchInput
-                    placeholder='Digite o nome do ponto...'
+                <PointStatusButton
+                    selected={selectedStatus}
+                    onStatusChange={setSelectedStatus}
                 />
 
-                <PointsTable
-                    points={currentPoints}
-                    onEdit={handleEdit}
-                    onDelete={handleDelete}
-                />
+                {selectedStatus === "pending" && (
+                    <PendingPointsTable />
+                )}
 
-                <Pagination
-                    page='pontos'
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    itemsPerPage={itemsPerPage}
-                    totalItems={totalItems}
-                    goToPage={goToPage}
-                />
+                {selectedStatus === "approved" && (
+                    <PointsTable />
+                )}
+
+                {selectedStatus === "rejected" && (
+                    <RefusedPointsTable />
+                )}
             </div>
         </>
     )

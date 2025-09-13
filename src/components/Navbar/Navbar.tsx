@@ -2,8 +2,11 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+    const router = useRouter();
+
     const menuItems = [
         { href: '/master/inicio', label: 'Início' },
         { href: '/master/usuarios', label: 'Usuários' },
@@ -12,6 +15,21 @@ const Navbar = () => {
         { href: '/master/termos-e-politica', label: 'Termos e Política' },
         { href: '/master/configuracoes', label: 'Configurações' },
     ];
+
+    const handleLogout = () => {
+        try {
+            // Clear authentication tokens
+            localStorage.removeItem('access');
+            localStorage.removeItem('refresh');
+
+            // Redirect to login page
+            router.replace('/login');
+        } catch (error) {
+            console.error('Error during logout:', error);
+            // Still redirect even if there's an error clearing tokens
+            router.replace('/login');
+        }
+    };
 
     return (
         <>
@@ -44,12 +62,12 @@ const Navbar = () => {
                     </div>
 
                     <div className="p-6 border-t border-white">
-                        <Link
-                            href="/"
-                            className="group flex items-center gap-3 py-3 px-4 text-white hover:bg-white/20 rounded-xl"
+                        <button
+                            onClick={handleLogout}
+                            className="cursor-pointer w-full group flex items-center gap-3 py-3 px-4 text-white hover:bg-white/20 rounded-xl transition-colors"
                         >
                             <span className="font-medium">Sair</span>
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </nav>

@@ -1,14 +1,23 @@
+'use client'
 import Link from "next/link";
 
 interface HomeButtonProps {
     name: string;
     description: string;
     href: string;
+    isExit?: boolean;
 }
 
-const HomeButton = ({ name, description, href }: HomeButtonProps) => {
+const HomeButton = ({ name, description, href, isExit }: HomeButtonProps) => {
+    const handleExit = () => {
+        if (isExit) {
+            localStorage.removeItem('access');
+            localStorage.removeItem('refresh');
+        }
+    };
+
     return (
-        <Link href={href} className="group block animate-fade-in-up">
+        <Link href={href} className="group block animate-fade-in-up" onClick={handleExit}>
             <div className="bg-white hover:bg-gradient-to-br hover:from-green-50 hover:to-blue-50 w-64 h-40 flex flex-col items-center justify-center gap-3 p-6 rounded-xl shadow-lg hover:shadow-xl border border-gray-200 hover:border-green-300 transition-all duration-300 transform hover:-translate-y-1">
                 <span className="text-xl font-semibold text-gray-800 group-hover:text-green-700 transition-colors duration-300 text-center">
                     {name}

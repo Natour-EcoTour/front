@@ -2,39 +2,78 @@
 import { useState } from 'react';
 import Modal from '@/components/Modal/Modal';
 import ReasonModal from '@/components/ReasonModal/ReasonModal';
+import { changeUserStatus } from '@/services/users/userStatsService';
+import { changePointStatus } from '@/services/points/changePointStatusService';
 
 interface SwitchProps {
   entity: 'user' | 'point';
+  status?: boolean;
+  userId?: string;
+  pointId?: string;
+  onStatusChange?: () => void;
 }
-
-export default function Switch({ entity }: SwitchProps) {
-  const [isOn, setIsOn] = useState(false);
+export default function Switch({ entity, status, userId, pointId, onStatusChange }: SwitchProps) {
+  const [isOn, setIsOn] = useState(status || false);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showReasonModal, setShowReasonModal] = useState(false);
+  const [lastAction, setLastAction] = useState<'activate' | 'deactivate'>('activate');
 
-  const handleToggle = () => {
+  const handleToggle = async () => {
     if (isOn) {
+      // Deactivating
+      setLastAction('deactivate');
       setShowWarningModal(true);
     } else {
-      setIsOn(true);
+      // Activating
+      setLastAction('activate');
+      try {
+        if (entity === 'user') {
+          await changeUserStatus(userId!, true, '');
+        } else if (entity === 'point') {
+          await changePointStatus(pointId!);
+        }
+        setIsOn(true);
+        setShowSuccessModal(true);
+        onStatusChange?.();
+      } catch (error) {
+        console.error(`Error activating ${entity}:`, error);
+      }
     }
   };
 
-  const confirmDeactivate = () => {
+  const confirmDeactivate = async () => {
     setShowWarningModal(false);
     if (entity === 'user') {
       setShowReasonModal(true);
-    } else {
-      setIsOn(false);
-      setShowSuccessModal(true);
+    } else if (entity === 'point') {
+      try {
+        await changePointStatus(pointId!);
+        setIsOn(false);
+        setShowSuccessModal(true);
+        onStatusChange?.();
+      } catch (error) {
+        console.error('Error deactivating point:', error);
+      }
     }
   };
 
-  const handleReasonSubmit = () => {
-    setIsOn(false);
-    setShowReasonModal(false);
-    setShowSuccessModal(true);
+  const handleReasonSubmit = async (data: { reason: string }) => {
+    try {
+      if (entity === 'user') {
+        await changeUserStatus(userId!, false, data.reason);
+      }
+      else if (entity === 'point') {
+        console.log(pointId);
+        await changePointStatus(pointId!);
+      }
+      setIsOn(false);
+      setShowReasonModal(false);
+      setShowSuccessModal(true);
+      onStatusChange?.();
+    } catch (error) {
+      console.error('Error updating user status:', error);
+    }
   };
 
   type ModalCopy = { title: string; message: string; type: 'info' | 'warning' | 'error' };
@@ -53,19 +92,31 @@ export default function Switch({ entity }: SwitchProps) {
     },
   };
 
-  const successModalCopy: Record<SwitchProps['entity'], SuccessModalCopy> = {
+  const successModalCopy: Record<SwitchProps['entity'], { activate: SuccessModalCopy; deactivate: SuccessModalCopy }> = {
     user: {
-      title: 'Usuário desativado',
-      message: 'O usuário foi desativado com sucesso.',
+      activate: {
+        title: 'Usuário ativado',
+        message: 'O usuário foi ativado com sucesso.',
+      },
+      deactivate: {
+        title: 'Usuário desativado',
+        message: 'O usuário foi desativado com sucesso.',
+      },
     },
     point: {
-      title: 'Ponto desativado',
-      message: 'O ponto foi desativado com sucesso.',
+      activate: {
+        title: 'Ponto ativado',
+        message: 'O ponto foi ativado com sucesso.',
+      },
+      deactivate: {
+        title: 'Ponto desativado',
+        message: 'O ponto foi desativado com sucesso.',
+      },
     },
   };
 
   const { title, message, type } = modalCopy[entity];
-  const successModal = successModalCopy[entity];
+  const successModal = successModalCopy[entity][lastAction];
 
   return (
     <>

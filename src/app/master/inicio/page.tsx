@@ -37,6 +37,7 @@ export default function MasterUsersPage() {
                 name="Sair"
                 description="Sair do sistema"
                 href="/"
+                isExit
             />
         </div>
     );
