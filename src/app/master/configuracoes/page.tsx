@@ -7,11 +7,6 @@ import ResetPasswordModal from '@/components/ResetPasswordModal/ResetPasswordMod
 import { getMyInfo, MyInfoResponse } from '@/services/auth/myInfoService';
 import Image from 'next/image';
 
-interface UpdatePasswordFormData {
-    old_password: string;
-    new_password: string;
-    confirm_password: string;
-}
 export default function MasterConfigsPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState<MyInfoResponse | null>(null);
