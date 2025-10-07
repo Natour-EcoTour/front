@@ -4,7 +4,7 @@ export interface UserDetailsResponse {
     id: number;
     username: string;
     photo?: string;
-    email: string;
+    masked_email: string;
     is_active: boolean;
     created_at: string;
     updated_at: string;

@@ -68,7 +68,7 @@ export default function MasterUsersIdPage() {
                 user={{
                     id: user.id.toString(),
                     name: user.username,
-                    email: user.email,
+                    masked_email: user.masked_email,
                     photo: user.photo || '',
                     is_active: user.is_active,
                     created_at: user.created_at,

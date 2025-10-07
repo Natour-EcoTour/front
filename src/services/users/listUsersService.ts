@@ -8,7 +8,7 @@ interface UserListParams {
 export interface UserItem {
     id: string;
     username: string;
-    email: string;
+    masked_email: string;
     is_active: boolean;
     is_staff: boolean;
     points: number;

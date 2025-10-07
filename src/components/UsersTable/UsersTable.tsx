@@ -47,7 +47,7 @@ export function UsersTable({ users, onDelete }: UsersTableProps) {
           {users.map((user) => (
             <tr key={user.id} className="hover:bg-green-50">
               <td className="px-6 py-4 text-sm font-medium text-gray-900">{user.username}</td>
-              <td className="px-6 py-4 text-sm text-gray-500">{user.email}</td>
+              <td className="px-6 py-4 text-sm text-gray-500">{user.masked_email}</td>
               <td className="px-6 py-4 text-sm text-gray-500">{user.points}</td>
               <td className="px-6 py-4">
                 <Switch

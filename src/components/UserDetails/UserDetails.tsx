@@ -8,7 +8,7 @@ interface UserDetailsProps {
     user: {
         id: string;
         name: string;
-        email: string;
+        masked_email: string;
         photo: string;
         is_active: boolean;
         created_at: string;
@@ -46,7 +46,7 @@ export function UserDetails({ user }: UserDetailsProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-1">
                         <label className="text-sm font-medium text-gray-600 uppercase tracking-wide">Email:</label>
-                        <div className="text-gray-900 font-medium">{user.email}</div>
+                        <div className="text-gray-900 font-medium">{user.masked_email}</div>
                     </div>
 
                     <div className="space-y-1">

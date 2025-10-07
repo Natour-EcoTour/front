@@ -38,7 +38,7 @@ export default function MasterUsersPage() {
         const transformedUsers: UserItem[] = usersData.results.map(user => ({
           id: user.id,
           username: user.username,
-          email: user.email,
+          masked_email: user.masked_email,
           is_active: user.is_active,
           is_staff: user.is_staff,
           points: user.points,
