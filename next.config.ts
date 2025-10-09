@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
         hostname: "cdn.discordapp.com"
       },
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "res.cloudinary.com"
       },
     ],

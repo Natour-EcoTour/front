@@ -16,6 +16,11 @@ interface UserDetailsProps {
     };
 }
 
+function toHttps(u?: string | null) {
+    if (!u) return undefined as unknown as string;
+    return u.replace(/^http:\/\//, 'https://');
+}
+
 export function UserDetails({ user }: UserDetailsProps) {
 
     const [showWarningModal, setShowWarningModal] = useState(false);
@@ -30,11 +35,10 @@ export function UserDetails({ user }: UserDetailsProps) {
             console.error("Error resetting password:", error);
         }
     };
-
     return (
         <>
             <Image
-                src={user.photo || '/no_user.png'}
+                src={toHttps(user.photo) || '/no_user.png'}
                 alt={user.name}
                 width={150}
                 height={150}
