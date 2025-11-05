@@ -1,3 +1,4 @@
+/* SWITCH COMPONENT */
 'use client';
 import { useState } from 'react';
 import Modal from '@/components/Modal/Modal';
@@ -5,6 +6,7 @@ import ReasonModal from '@/components/ReasonModal/ReasonModal';
 import { changeUserStatus } from '@/services/users/userStatsService';
 import { changePointStatus } from '@/services/points/changePointStatusService';
 
+// Switch props
 interface SwitchProps {
   entity: 'user' | 'point';
   status?: boolean;
@@ -13,12 +15,14 @@ interface SwitchProps {
   onStatusChange?: () => void;
 }
 export default function Switch({ entity, status, userId, pointId, onStatusChange }: SwitchProps) {
+  // Use states
   const [isOn, setIsOn] = useState(status || false);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showReasonModal, setShowReasonModal] = useState(false);
   const [lastAction, setLastAction] = useState<'activate' | 'deactivate'>('activate');
 
+  // Toggle handler
   const handleToggle = async () => {
     if (isOn) {
       // Deactivating
@@ -42,6 +46,7 @@ export default function Switch({ entity, status, userId, pointId, onStatusChange
     }
   };
 
+  // Confirm deactivate handler
   const confirmDeactivate = async () => {
     setShowWarningModal(false);
     if (entity === 'user') {
@@ -58,6 +63,7 @@ export default function Switch({ entity, status, userId, pointId, onStatusChange
     }
   };
 
+  // Reason submit handler
   const handleReasonSubmit = async (data: { reason: string }) => {
     try {
       if (entity === 'user') {

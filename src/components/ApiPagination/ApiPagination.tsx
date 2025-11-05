@@ -1,5 +1,7 @@
+/* API PAGINATION COMPONENT */
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+// Pagination props
 interface ApiPaginationProps {
     page: string;
     currentPage: number;

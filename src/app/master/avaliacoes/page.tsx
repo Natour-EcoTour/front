@@ -1,3 +1,4 @@
+/* MASTER REVIEWS PAGE */
 'use client'
 import { Pagination } from '@/components/Pagination/Pagination';
 import { ReviewsTable } from '@/components/ReviewsTable/ReviewsTable'
@@ -7,6 +8,7 @@ import MasterPageTitle from '@/components/MasterPageTitle/MasterPageTitle'
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
+// Review interfaces
 interface ReviewItem {
     id: string;
     user: string;
@@ -27,6 +29,7 @@ interface ReviewsResponse {
 }
 
 export default function MasterReviewsPage() {
+    // Use states
     const [reviews, setReviews] = useState<ReviewItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -34,6 +37,7 @@ export default function MasterReviewsPage() {
     const [totalPages, setTotalPages] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(15);
 
+    // Fetch reviews
     useEffect(() => {
         const fetchReviews = async () => {
             setIsLoading(true);
@@ -70,6 +74,7 @@ export default function MasterReviewsPage() {
         fetchReviews();
     }, [currentPage, itemsPerPage]);
 
+    // Page navigation
     const goToPage = (page: number) => {
         setCurrentPage(page);
     };

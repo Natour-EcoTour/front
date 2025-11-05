@@ -1,9 +1,12 @@
+/* GET REVIEWS SERVICE */
 import apiClient from "../apiClient";
 
+// Reviews parameters
 interface ReviewsParams {
     page?: number;
 }
 
+// Review item interface
 interface ReviewItem {
     id: number;
     username: string;
@@ -11,6 +14,7 @@ interface ReviewItem {
     rating: number;
 }
 
+// Reviews response interface
 interface ReviewsResponse {
     count: number;
     next: string | null;
@@ -18,6 +22,7 @@ interface ReviewsResponse {
     results: ReviewItem[];
 }
 
+// Get reviews function
 export const getReviews = async (params: ReviewsParams = {}) => {
     try {
         const page = params.page || 1;

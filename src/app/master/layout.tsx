@@ -1,3 +1,4 @@
+/* MASTER LAYOUT */
 'use client';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -8,10 +9,12 @@ export default function MasterLayout({
 }: {
     children: React.ReactNode;
 }) {
+    // Use states
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
 
+    // Authentication check
     useEffect(() => {
         const checkAuthentication = async () => {
             try {

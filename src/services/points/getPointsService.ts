@@ -1,11 +1,14 @@
+/* GET POINTS SERVICE */
 import apiClient from "../apiClient";
 
+// Points list parameters
 interface PoinstListParams {
     page?: number,
     name?: string,
     status?: string;
 }
 
+// Point item interface
 export interface PointItem {
     id: number;
     is_active: boolean;
@@ -30,6 +33,7 @@ export interface PointItem {
     photos: string[];
 }
 
+// Point list response interface
 export interface PointListResponse {
     count: number;
     next: string | null;
@@ -37,6 +41,7 @@ export interface PointListResponse {
     results: PointItem[];
 }
 
+// List points function
 export const listPoints = async (params: PoinstListParams) => {
     try {
         const response = await apiClient.get("points/", { params });

@@ -1,3 +1,4 @@
+/* NAVBAR COMPONENT */
 
 'use client';
 
@@ -7,6 +8,7 @@ import { useRouter } from 'next/navigation';
 const Navbar = () => {
     const router = useRouter();
 
+    // Menu items configuration
     const menuItems = [
         { href: '/master/inicio', label: 'Início' },
         { href: '/master/usuarios', label: 'Usuários' },
@@ -16,17 +18,15 @@ const Navbar = () => {
         { href: '/master/configuracoes', label: 'Configurações' },
     ];
 
+    // Logout handler
     const handleLogout = () => {
         try {
-            // Clear authentication tokens
             localStorage.removeItem('access');
             localStorage.removeItem('refresh');
 
-            // Redirect to login page
             router.replace('/login');
         } catch (error) {
             console.error('Error during logout:', error);
-            // Still redirect even if there's an error clearing tokens
             router.replace('/login');
         }
     };

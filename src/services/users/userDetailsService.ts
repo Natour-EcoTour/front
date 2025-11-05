@@ -1,5 +1,7 @@
+/* USER DETAILS SERVICE */
 import apiClient from "../apiClient";
 
+// User details response interface
 export interface UserDetailsResponse {
     id: number;
     username: string;
@@ -11,6 +13,7 @@ export interface UserDetailsResponse {
     points: number;
 }
 
+// Get user details function
 export const getUserDetails = async (userId: string) => {
     try {
         const response = await apiClient.get(`users/${userId}/`);

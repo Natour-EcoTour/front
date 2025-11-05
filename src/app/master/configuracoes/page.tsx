@@ -1,3 +1,4 @@
+/* MASTER CONFIGURATIONS PAGE */
 'use client'
 import { useEffect, useState } from 'react';
 
@@ -8,10 +9,12 @@ import { getMyInfo, MyInfoResponse } from '@/services/auth/myInfoService';
 import Image from 'next/image';
 
 export default function MasterConfigsPage() {
+    // Use states
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState<MyInfoResponse | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // Fetch user info
     useEffect(() => {
         const fetchMyInfo = async () => {
             setIsLoading(true);

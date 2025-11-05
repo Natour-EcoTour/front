@@ -1,3 +1,6 @@
+/* POINT STATUS BUTTON COMPONENT */
+
+// Point status button props
 interface PointStatusButtonProps {
     selected: string;
     onStatusChange: (status: string) => void;

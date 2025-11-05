@@ -1,3 +1,4 @@
+/* PENDING POINTS TABLE COMPONENT */
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -13,6 +14,7 @@ import { PointListResponse, listPoints, PointItem } from '@/services/points/getP
 import { changePointStatus } from '@/services/points/pointStatusService';
 
 export function PendingPointsTable() {
+    // Use states
     const [points, setPoints] = useState<PointItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [totalItems, setTotalItems] = useState(0);
@@ -28,11 +30,13 @@ export function PendingPointsTable() {
     const router = useRouter();
     const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
+    // Utility functions
     const truncateUrl = (url: string, maxLength: number = 50) => {
         if (url.length <= maxLength) return url;
         return url.substring(0, maxLength) + '...';
     };
 
+    // Refresh points data
     const refreshPoints = useCallback(async () => {
         setIsLoading(true);
         try {
@@ -85,6 +89,7 @@ export function PendingPointsTable() {
         }
     }, [currentPage, debouncedSearchTerm, itemsPerPage]);
 
+    // Action handlers
     const handleApproveClick = (id: string) => {
         setSelectedId(id);
         setShowApproveModal(true);
@@ -100,7 +105,7 @@ export function PendingPointsTable() {
             await changePointStatus(selectedId, { status: true, is_active: true })
                 .then(() => {
                     setShowApproveSuccessModal(true);
-                    refreshPointsSilently(); // Refresh the table silently after successful approval
+                    refreshPointsSilently();
                 })
                 .catch((error) => {
                     console.error('Error approving point:', error);
@@ -115,7 +120,7 @@ export function PendingPointsTable() {
             await changePointStatus(selectedId, { status: false, is_active: false })
                 .then(() => {
                     setShowReproveSuccessModal(true);
-                    refreshPointsSilently(); // Refresh the table silently after successful reproval
+                    refreshPointsSilently();
                 })
                 .catch((error) => {
                     console.error('Error rejecting point:', error);

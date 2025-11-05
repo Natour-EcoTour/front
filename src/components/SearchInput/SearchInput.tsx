@@ -1,5 +1,7 @@
+/* SEARCH INPUT COMPONENT */
 import { SearchIcon, Loader2 } from 'lucide-react';
 
+// Search input props
 interface SearchInputProps {
     placeholder: string;
     value?: string;

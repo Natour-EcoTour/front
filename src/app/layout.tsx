@@ -1,9 +1,11 @@
+/* ROOT LAYOUT */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Merriweather } from "next/font/google";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 
+// Font configurations
 const playfairDisplay = Merriweather({
   variable: "--font-serif",
   subsets: ["latin"],
@@ -26,6 +28,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Metadata
 export const metadata: Metadata = {
   title: "Natour",
   description: "O Natour é uma plataforma que conecta amantes da natureza e viajantes.",

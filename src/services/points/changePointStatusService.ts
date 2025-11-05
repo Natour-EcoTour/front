@@ -1,5 +1,7 @@
+/* CHANGE POINT STATUS SERVICE */
 import apiClient from "../apiClient";
 
+// Change point status function
 export const changePointStatus = async (pointId: string) => {
     try {
         const response = await apiClient.put(`/points/${pointId}/status/`);

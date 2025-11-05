@@ -1,6 +1,8 @@
+/* PASSWORD INPUT COMPONENT */
 import { Eye, EyeOff } from "lucide-react";
 import { useState, forwardRef } from "react";
 
+// Password input props
 interface PasswordInputProps {
     placeholder: string;
     id: string;
@@ -13,6 +15,7 @@ interface PasswordInputProps {
 
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     ({ placeholder, id, error, name, onChange, onBlur, value }, ref) => {
+        // Use states
         const [showPassword, setShowPassword] = useState(false);
 
         return (

@@ -1,3 +1,4 @@
+/* MASTER HOME PAGE */
 import HomeButton from "@/components/HomeButton/HomeButton";
 
 export default function MasterUsersPage() {

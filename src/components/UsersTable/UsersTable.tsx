@@ -1,3 +1,4 @@
+/* USERS TABLE COMPONENT */
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -7,6 +8,7 @@ import Switch from "@/components/Switch/Switch"
 import Modal from '@/components/Modal/Modal';
 import { UserItem } from '@/services/users/listUsersService';
 
+// Users table props
 interface UsersTableProps {
   users: UserItem[];
   onDelete: (id: string) => void;
@@ -14,11 +16,13 @@ interface UsersTableProps {
 }
 
 export function UsersTable({ users, onDelete }: UsersTableProps) {
+  // Use states
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const router = useRouter();
 
+  // Delete handlers
   const handleDeleteClick = (id: string) => {
     setSelectedId(id);
     setShowWarningModal(true);

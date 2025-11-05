@@ -1,3 +1,4 @@
+/* MASTER USER DETAILS PAGE */
 'use client'
 
 import { useParams } from "next/navigation";
@@ -10,11 +11,13 @@ import { getUserDetails, UserDetailsResponse } from "@/services/users/userDetail
 import Image from "next/image";
 
 export default function MasterUsersIdPage() {
+    // Use states
     const [isLoading, setIsloading] = useState(false);
     const [user, setUser] = useState<UserDetailsResponse | null>(null);
     const params = useParams();
     const userId = params.id as string;
 
+    // Fetch user details
     useEffect(() => {
         const fetchUserDetails = async () => {
             setIsloading(true);

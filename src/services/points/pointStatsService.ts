@@ -1,5 +1,7 @@
+/* POINT STATS SERVICE (USER STATUS) */
 import apiClient from "../apiClient";
 
+// Change user status function
 export const changeUserStatus = async (userId: string, status: boolean, deactivation_reason: string) => {
     try {
         if (status === true) {

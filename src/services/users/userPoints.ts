@@ -1,11 +1,13 @@
+/* USER POINTS SERVICE */
 import apiClient from "../apiClient";
 
-
+// User points interface
 export interface UserPoints {
     count: number;
     points: Point[];
 }
 
+// Point interface
 export interface Point {
     id: number;
     name: string;
@@ -16,7 +18,7 @@ export interface Point {
     views: number;
 }
 
-
+// Get user points function
 export const getUserPoints = async (userId: string) => {
     try {
         const response = await apiClient.get(`users/${userId}/points/`);

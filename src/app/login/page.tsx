@@ -1,3 +1,4 @@
+/* LOGIN */
 'use client';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
@@ -9,6 +10,7 @@ import { Eye, EyeOff } from "lucide-react";
 
 import { login, validateTokenAndRedirect } from '@/utils/tokenUtils';
 
+// Login props
 interface LoginProps {
     email: string;
     password: string;
@@ -16,10 +18,12 @@ interface LoginProps {
 }
 
 export default function MasterLogin() {
+    // Use states
     const [showPassword, setShowPassword] = useState(false);
     const [isCheckingToken, setIsCheckingToken] = useState(true);
     const router = useRouter();
 
+    // Form handler
     const {
         register,
         handleSubmit,
@@ -28,6 +32,7 @@ export default function MasterLogin() {
         resolver: yupResolver(LoginSchema),
     });
 
+    // Token check
     useEffect(() => {
         const checkExistingToken = async () => {
             try {
@@ -44,6 +49,7 @@ export default function MasterLogin() {
         checkExistingToken();
     }, [router]);
 
+    // Login submit
     const onSubmit = async (data: LoginProps) => {
         try {
             await login({

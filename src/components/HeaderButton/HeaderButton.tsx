@@ -1,10 +1,13 @@
+/* HEADER BUTTON COMPONENT */
 
+// Header button props
 interface HeaderButtonProps {
     title: string;
     targetId?: string;
 }
 
 const HeaderButton = ({ title, targetId }: HeaderButtonProps) => {
+    // Scroll handler
     const handleClick = () => {
         if (targetId) {
             const section = document.getElementById(targetId);

@@ -1,9 +1,11 @@
+/* USER DETAILS COMPONENT */
 import Modal from "@/components/Modal/Modal";
 import Image from "next/image";
 import { useState } from "react";
 import ResetPasswordButton from "@/components/ResetPasswordButton/ResetPasswordButton";
 import { resetUserPassword } from "@/services/users/resetUserPasswordService";
 
+// User details props
 interface UserDetailsProps {
     user: {
         id: string;
@@ -16,6 +18,7 @@ interface UserDetailsProps {
     };
 }
 
+// HTTP to HTTPS converter
 function toHttps(u?: string | null) {
     if (!u) return undefined as unknown as string;
     return u.replace(/^http:\/\//, 'https://');
@@ -23,9 +26,11 @@ function toHttps(u?: string | null) {
 
 export function UserDetails({ user }: UserDetailsProps) {
 
+    // Use states
     const [showWarningModal, setShowWarningModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
+    // Reset password handler
     const sendPassword = async () => {
         try {
             await resetUserPassword(user.id);

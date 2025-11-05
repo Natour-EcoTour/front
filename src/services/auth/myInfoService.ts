@@ -1,5 +1,7 @@
+/* MY INFO SERVICE */
 import apiClient from '../apiClient';
 
+// My info response interface
 export interface MyInfoResponse {
     id: number;
     username: string;
@@ -7,6 +9,7 @@ export interface MyInfoResponse {
     photoUrl?: string;
 }
 
+// Get my info function
 export const getMyInfo = async () => {
     try {
         const response = await apiClient.get('users/me/');

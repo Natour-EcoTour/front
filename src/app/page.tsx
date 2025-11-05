@@ -1,3 +1,4 @@
+/* HOME LANDING PAGE */
 'use client';
 
 import Image from 'next/image';

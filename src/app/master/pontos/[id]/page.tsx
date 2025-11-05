@@ -1,3 +1,4 @@
+/* MASTER POINT DETAILS PAGE */
 'use client'
 import { use, useEffect, useState } from "react";
 import MasterPageTitle from "@/components/MasterPageTitle/MasterPageTitle";
@@ -8,7 +9,7 @@ import Image from "next/image";
 import { pointDetails, PointDetailsResponse } from "@/services/points/pointDetailsService";
 import { getPointTypeTranslation } from "@/utils/pointTypes";
 
-
+// Point page props
 interface MasterPointsIdPageProps {
     params: Promise<{
         id: string;
@@ -16,11 +17,13 @@ interface MasterPointsIdPageProps {
 }
 
 export default function MasterPointsIdPage({ params }: MasterPointsIdPageProps) {
+    // Use states
     const { id } = use(params);
     const [point, setPoint] = useState<PointDetailsResponse | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Fetch point details
     useEffect(() => {
         const fetchPointDetails = async () => {
             try {

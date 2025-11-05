@@ -1,3 +1,4 @@
+/* MASTER USERS PAGE */
 'use client';
 import { useEffect, useState } from 'react';
 import { UsersTable } from '@/components/UsersTable/UsersTable';
@@ -11,6 +12,7 @@ import { deleteUser } from '@/services/users/deleteUserService';
 import Image from 'next/image';
 
 export default function MasterUsersPage() {
+  // Use states
   const [users, setUsers] = useState<UserItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +23,7 @@ export default function MasterUsersPage() {
   
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
+  // Fetch users
   useEffect(() => {
     const fetchUsers = async () => {
       setIsLoading(true);
@@ -66,10 +69,12 @@ export default function MasterUsersPage() {
     fetchUsers();
   }, [currentPage, itemsPerPage, debouncedSearchTerm]);
 
+  // Page navigation
   const goToPage = (page: number) => {
     setCurrentPage(page);
   };
 
+  // Search handler
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
     setCurrentPage(1);
@@ -94,6 +99,7 @@ export default function MasterUsersPage() {
     );
   }
 
+  // Delete handler
   const handleDelete = async (id: string) => {
     console.log('Delete', id);
     try {

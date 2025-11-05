@@ -1,3 +1,4 @@
+/* POINTS TABLE COMPONENT */
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -15,6 +16,7 @@ import Image from 'next/image';
 
 
 export function PointsTable() {
+    // Use states
     const [showWarningModal, setShowWarningModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [points, setPoints] = useState<PointItem[]>([]);
@@ -28,11 +30,13 @@ export function PointsTable() {
     const router = useRouter();
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
+    // Utility functions
     const truncateUrl = (url: string, maxLength: number = 50) => {
         if (url.length <= maxLength) return url;
         return url.substring(0, maxLength) + '...';
     };
 
+    // Refresh points data
     const refreshPoints = useCallback(async () => {
         setIsLoading(true);
         try {
@@ -85,6 +89,7 @@ export function PointsTable() {
         }
     }, [currentPage, debouncedSearchTerm, itemsPerPage]);
 
+    // Action handlers
     const handleDeleteClick = (id: string) => {
         setSelectedId(id);
         setShowWarningModal(true);
@@ -95,7 +100,7 @@ export function PointsTable() {
             await deletePoint(selectedId)
                 .then(() => {
                     setShowSuccessModal(true);
-                    refreshPointsSilently(); // Refresh the table silently after successful deletion
+                    refreshPointsSilently();
                 })
                 .catch((error) => {
                     console.error('Error deleting point:', error);

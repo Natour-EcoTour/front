@@ -1,3 +1,4 @@
+/* TERMS OF USE PAGE */
 'use client'
 import Link from "next/link";
 import { getTerm, TermResponse } from "@/services/terms/getTermService";
@@ -5,9 +6,11 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function TermosDeUso() {
+    // Use states
     const [term, setTerm] = useState<TermResponse | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    // Fetch terms
     useEffect(() => {
         const fetchTerm = async () => {
             setIsLoading(true);

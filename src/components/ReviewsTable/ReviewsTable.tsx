@@ -1,3 +1,6 @@
+/* REVIEWS TABLE COMPONENT */
+
+// Reviews interface
 interface Reviews {
     id: string;
     user: string;
@@ -5,6 +8,7 @@ interface Reviews {
     rating: number;
 }
 
+// Reviews table props
 interface ReviewsTableProps {
     reviews: Reviews[];
 }

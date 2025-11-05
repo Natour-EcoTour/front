@@ -1,3 +1,4 @@
+/* MASTER POINTS PAGE */
 'use client'
 
 import { useState } from 'react';
@@ -8,6 +9,7 @@ import PointStatusButton from '@/components/PointStatusButton/PointStatusButton'
 import { RefusedPointsTable } from '@/components/RefusedPoinstTable/RefusedPointsTable';
 
 export default function MasterPointsPage() {
+    // Use states
     const [selectedStatus, setSelectedStatus] = useState<string>("pending");
     return (
         <>

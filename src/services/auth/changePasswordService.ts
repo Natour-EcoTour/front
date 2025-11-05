@@ -1,4 +1,7 @@
+/* CHANGE PASSWORD SERVICE */
 import apiClient from '@/services/apiClient';
+
+// Change user password function
 export const changeUserPassword = async (old_password: string,
     new_password: string,
     confirm_password: string) => {

@@ -1,13 +1,14 @@
+/* API CLIENT SERVICE */
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-
+// Create axios instance
 export const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 10000,
 });
 
-
+// Request interceptor
 apiClient.interceptors.request.use(
   async (config) => {
     const accessToken = await localStorage.getItem('access');
@@ -24,6 +25,7 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+// Response interceptor
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {

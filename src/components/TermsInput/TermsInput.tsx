@@ -1,11 +1,14 @@
+/* TERMS INPUT COMPONENT */
 import { TermResponse, getTerm } from "@/services/terms/getTermService";
 import Image from "next/image";
 import { useEffect, useState, useRef, forwardRef, useImperativeHandle } from "react";
 
+// Terms input props
 interface TermsInputProps {
     onEdit: boolean;
 }
 
+// Terms input ref
 export interface TermsInputRef {
     getTermsValues: () => {
         termsContent: string;
@@ -14,6 +17,7 @@ export interface TermsInputRef {
 }
 
 export const TermsInput = forwardRef<TermsInputRef, TermsInputProps>(({ onEdit }, ref) => {
+    // Use states
     const [isLoading, setIsLoading] = useState(false);
     const [term, setTerm] = useState<TermResponse | null>(null);
     const [policy, setPolicy] = useState<TermResponse | null>(null);
@@ -21,6 +25,7 @@ export const TermsInput = forwardRef<TermsInputRef, TermsInputProps>(({ onEdit }
     const termsRef = useRef<HTMLTextAreaElement>(null);
     const policyRef = useRef<HTMLTextAreaElement>(null);
 
+    // Expose getTermsValues method
     useImperativeHandle(ref, () => ({
         getTermsValues: () => ({
             termsContent: termsRef.current?.value || "",
@@ -28,6 +33,7 @@ export const TermsInput = forwardRef<TermsInputRef, TermsInputProps>(({ onEdit }
         })
     }));
 
+    // Fetch terms data
     useEffect(() => {
         const fetchTerms = async () => {
             setIsLoading(true);

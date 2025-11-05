@@ -1,3 +1,4 @@
+/* GO BACK BUTTON COMPONENT */
 import { useRouter } from "next/navigation";
 
 export function GoBackButton() {

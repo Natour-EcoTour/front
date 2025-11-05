@@ -1,4 +1,6 @@
+/* MASTER PAGE TITLE COMPONENT */
 
+// Master page title props
 interface MasterPageTitleProps {
     text: string
 }

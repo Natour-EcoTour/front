@@ -1,3 +1,6 @@
+/* LANDING PAGE CARDS COMPONENT */
+
+// Landing page cards props
 interface LandingpageCardsProps {
     title: string;
     description: string;

@@ -1,3 +1,4 @@
+/* RESET PASSWORD MODAL COMPONENT */
 'use client'
 import { X, Lock } from "lucide-react";
 import { useEffect } from "react";
@@ -12,6 +13,7 @@ import { UpdatePasswordSchema } from "@/validations/UpdatePasswordSchema";
 import { changeUserPassword } from "@/services/auth/changePasswordService";
 import { toast } from "react-toastify";
 
+// Modal props
 interface ModalProps {
     open: boolean;
     onClose: () => void;
@@ -19,6 +21,7 @@ interface ModalProps {
     children?: React.ReactNode;
 }
 
+// Update password form data
 interface UpdatePasswordFormData {
     old_password: string;
     new_password: string;
@@ -26,6 +29,7 @@ interface UpdatePasswordFormData {
 }
 
 const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
+    // Form handler
     const {
         register,
         handleSubmit,
@@ -36,18 +40,21 @@ const ResetPasswordModal = ({ open, onClose, onConfirm, children }: ModalProps) 
         mode: "onChange"
     });
 
+    // Escape key handler
     useEffect(() => {
         const onEsc = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
         if (open) document.addEventListener('keydown', onEsc);
         return () => document.removeEventListener('keydown', onEsc);
     }, [open, onClose]);
 
+    // Reset form when modal closes
     useEffect(() => {
         if (!open) {
             reset();
         }
     }, [open, reset]);
 
+    // Submit handler
     const onSubmit = async (data: UpdatePasswordFormData) => {
         if (onConfirm) {
             try {

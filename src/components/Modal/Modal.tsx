@@ -1,8 +1,10 @@
+/* MODAL COMPONENT */
 'use client';
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { X, Info, TriangleAlert, Ban, Check } from 'lucide-react';
 
+// Modal props
 interface ModalProps {
     open: boolean;
     onClose: () => void;
@@ -14,6 +16,7 @@ interface ModalProps {
 }
 
 const Modal = ({ open, onClose, onConfirm, children, title, message, type }: ModalProps) => {
+    // Escape key handler
     useEffect(() => {
         const onEsc = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
         if (open) document.addEventListener('keydown', onEsc);
@@ -22,6 +25,7 @@ const Modal = ({ open, onClose, onConfirm, children, title, message, type }: Mod
 
     if (!open) return null;
 
+    // Type configurations
     const typeColors = {
         info: 'bg-blue-600 hover:bg-blue-700',
         warning: 'bg-yellow-500 hover:bg-yellow-600',

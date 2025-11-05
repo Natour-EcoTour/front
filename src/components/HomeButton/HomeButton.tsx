@@ -1,6 +1,8 @@
+/* HOME BUTTON COMPONENT */
 'use client'
 import Link from "next/link";
 
+// Home button props
 interface HomeButtonProps {
     name: string;
     description: string;
@@ -9,6 +11,7 @@ interface HomeButtonProps {
 }
 
 const HomeButton = ({ name, description, href, isExit }: HomeButtonProps) => {
+    // Exit handler
     const handleExit = () => {
         if (isExit) {
             localStorage.removeItem('access');

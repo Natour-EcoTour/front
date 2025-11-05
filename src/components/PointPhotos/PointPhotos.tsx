@@ -1,10 +1,13 @@
+/* POINT PHOTOS COMPONENT */
 import Image from "next/image";
 
+// Point photos props
 interface PointPhotosProps {
     photos: string[];
     className?: string;
 }
 
+// HTTP to HTTPS converter
 function toHttps(u?: unknown): string | undefined {
     if (u == null) return undefined;
     if (typeof u === "object" && u && "url" in u) {

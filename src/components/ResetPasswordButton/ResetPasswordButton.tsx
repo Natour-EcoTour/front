@@ -1,3 +1,6 @@
+/* RESET PASSWORD BUTTON COMPONENT */
+
+// Reset password button props
 interface ResetPasswordButtonProps {
     onResetClick: () => void;
 }

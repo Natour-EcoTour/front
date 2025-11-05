@@ -1,3 +1,4 @@
+/* MASTER TERMS AND POLICIES PAGE */
 'use client'
 import { useState, useRef } from 'react';
 import MasterPageTitle from '@/components/MasterPageTitle/MasterPageTitle'
@@ -6,11 +7,13 @@ import Modal from '@/components/Modal/Modal';
 import { updateTerm } from '@/services/terms/updateTermsService';
 
 export default function MasterTermsPage() {
+    // Use states
     const [onEdit, setOnEdit] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const termsInputRef = useRef<TermsInputRef>(null);
 
+    // Button click handler
     const handleButtonClick = () => {
         if (onEdit) {
             setShowModal(true);
@@ -19,18 +22,16 @@ export default function MasterTermsPage() {
         }
     };
 
+    // Confirm handler
     const handleConfirm = async () => {
         try {
             setIsLoading(true);
             
-            // Get the current values from the textarea inputs
             const values = termsInputRef.current?.getTermsValues();
             
             if (values) {
-                // Update terms of use (ID: 1)
                 await updateTerm(1, values.termsContent);
                 
-                // Update privacy policy (ID: 2)
                 await updateTerm(2, values.policyContent);
                 
                 console.log("Terms updated successfully!");
@@ -40,7 +41,6 @@ export default function MasterTermsPage() {
             setShowModal(false);
         } catch (error) {
             console.error("Error updating terms:", error);
-            // You can add error handling here (toast, alert, etc.)
         } finally {
             setIsLoading(false);
         }

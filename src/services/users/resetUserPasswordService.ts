@@ -1,4 +1,7 @@
+/* RESET USER PASSWORD SERVICE */
 import apiClient from "../apiClient";
+
+// Reset user password function
 export const resetUserPassword = async (userId: string) => {
     try {
         const response = await apiClient.put(`users/${userId}/update/password/`)

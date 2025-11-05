@@ -1,6 +1,8 @@
+/* AUTH SERVICE */
 import { toast } from 'react-toastify';
 import apiClient from '../apiClient';
 
+// Login response interface
 export interface LoginResponse {
     refresh: string;
     access: string;
@@ -13,6 +15,7 @@ export interface LoginResponse {
     };
 }
 
+// Login user function
 export const loginUser = async (email: string, password: string, remember_me: boolean) => {
     try {
         const response = await apiClient.post('users/login/', {

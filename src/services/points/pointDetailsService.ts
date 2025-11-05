@@ -1,8 +1,10 @@
+/* POINT DETAILS SERVICE */
 import apiClient from "../apiClient";
 import { PointType } from "@/utils/pointTypes";
 
 export type { PointType } from "@/utils/pointTypes";
 
+// Point details response interface
 export interface PointDetailsResponse {
     id: number;
     is_active: boolean;
@@ -27,6 +29,7 @@ export interface PointDetailsResponse {
     photos: string[];
 }
 
+// Point details function
 export const pointDetails = async (pointId: string): Promise<PointDetailsResponse> => {
     try {
         const response = await apiClient.get(`points/${pointId}/`);

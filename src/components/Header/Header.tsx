@@ -1,3 +1,4 @@
+/* HEADER COMPONENT */
 import HeaderButton from "@/components/HeaderButton/HeaderButton";
 
 const Header = () => {

@@ -1,9 +1,11 @@
+/* IMAGES LANDING PAGE CAROUSEL COMPONENT */
 import React, { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay';
 
 export function ImagesLandingPage() {
+    // Embla carousel setup
     const [emblaRef, emblaApi] = useEmblaCarousel(
         {
             loop: true,
@@ -24,9 +26,11 @@ export function ImagesLandingPage() {
         ]
     )
 
+    // Use states
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
+    // Navigation handlers
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()
     }, [emblaApi])
@@ -39,11 +43,13 @@ export function ImagesLandingPage() {
         if (emblaApi) emblaApi.scrollTo(index)
     }, [emblaApi])
 
+    // Selection handler
     const onSelect = useCallback(() => {
         if (!emblaApi) return
         setSelectedIndex(emblaApi.selectedScrollSnap())
     }, [emblaApi])
 
+    // Initialize carousel
     useEffect(() => {
         if (!emblaApi) return
 

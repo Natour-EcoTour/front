@@ -1,3 +1,4 @@
+/* REASON MODAL COMPONENT */
 'use client'
 import { X, Text } from "lucide-react";
 import { useEffect } from "react";
@@ -6,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RefusalSchema } from "@/validations/RefusalSchema";
 
+// Modal props
 interface ModalProps {
     open: boolean;
     onClose: () => void;
@@ -13,11 +15,13 @@ interface ModalProps {
     children?: React.ReactNode;
 }
 
+// Refusal reason props
 interface RefusalReasonProps {
     reason: string;
 }
 
 const ReasonModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
+    // Form handler
     const {
         register,
         handleSubmit,
@@ -28,18 +32,21 @@ const ReasonModal = ({ open, onClose, onConfirm, children }: ModalProps) => {
         mode: "onChange"
     });
 
+    // Escape key handler
     useEffect(() => {
         const onEsc = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
         if (open) document.addEventListener('keydown', onEsc);
         return () => document.removeEventListener('keydown', onEsc);
     }, [open, onClose]);
 
+    // Reset form when modal closes
     useEffect(() => {
         if (!open) {
             reset();
         }
     }, [open, reset]);
 
+    // Submit handler
     const onSubmit = (data: RefusalReasonProps) => {
         if (onConfirm) {
             onConfirm(data);
